@@ -1,7 +1,10 @@
 import { motion, useInView } from 'motion/react';
-import { GraduationCap, Users, Target, BarChart3, Megaphone, Camera, Search, MessageSquare, ArrowRight, CheckCircle2, Sparkles, BookOpen, Lightbulb, Pencil } from 'lucide-react';
+import { GraduationCap, Users, Target, BarChart3, Megaphone, Camera, Search, MessageSquare, ArrowRight, CheckCircle2, Sparkles, BookOpen, Lightbulb, Pencil, Rocket } from 'lucide-react';
+import { FaGoogle, FaMeta, FaTiktok, FaLinkedin } from 'react-icons/fa6';
 import AnimatedBackground from '../components/AnimatedBackground';
 import ContactForm from '../components/ContactForm';
+import TrustBadges from '../components/TrustBadges';
+import WorkspacePhotos from '../components/WorkspacePhotos';
 import { useRef } from 'react';
 
 export default function Education() {
@@ -186,6 +189,33 @@ export default function Education() {
         </div>
       </section>
 
+      {/* Marquee Section */}
+      <section className="py-12 bg-brand-black text-white overflow-hidden border-y border-brand-red/20">
+        <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
+          <p className="text-sm font-medium text-white/50 uppercase tracking-widest">Platforms We Master For Admissions</p>
+        </div>
+        <div className="flex w-[200%] animate-[marquee_20s_linear_infinite]">
+          {/* First set */}
+          <div className="flex w-1/2 justify-around items-center">
+            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity"><span className="flex items-center justify-center w-8 h-8"><FaGoogle size={32} /></span><span className="text-xl font-display font-bold">Google Ads</span></div>
+            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity"><span className="flex items-center justify-center w-8 h-8"><FaMeta size={32} /></span><span className="text-xl font-display font-bold">Meta Ads</span></div>
+            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity"><span className="flex items-center justify-center w-8 h-8"><FaTiktok size={32} /></span><span className="text-xl font-display font-bold">TikTok Ads</span></div>
+            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity"><span className="flex items-center justify-center w-8 h-8"><FaLinkedin size={32} /></span><span className="text-xl font-display font-bold">LinkedIn Ads</span></div>
+          </div>
+          {/* Second set for infinite loop */}
+          <div className="flex w-1/2 justify-around items-center">
+            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity"><span className="flex items-center justify-center w-8 h-8"><FaGoogle size={32} /></span><span className="text-xl font-display font-bold">Google Ads</span></div>
+            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity"><span className="flex items-center justify-center w-8 h-8"><FaMeta size={32} /></span><span className="text-xl font-display font-bold">Meta Ads</span></div>
+            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity"><span className="flex items-center justify-center w-8 h-8"><FaTiktok size={32} /></span><span className="text-xl font-display font-bold">TikTok Ads</span></div>
+            <div className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity"><span className="flex items-center justify-center w-8 h-8"><FaLinkedin size={32} /></span><span className="text-xl font-display font-bold">LinkedIn Ads</span></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Education Trust Badges & Workspace Photos */}
+      <TrustBadges type="education" />
+      <WorkspacePhotos type="education" />
+
       {/* Services Section */}
       <section id="services" className="py-24 bg-brand-gray relative">
         <div className="max-w-7xl mx-auto px-6">
@@ -319,8 +349,106 @@ export default function Education() {
         </div>
       </section>
 
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-24 relative bg-brand-gray">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">Our Admission Growth Process</h2>
+            <p className="text-brand-black/70 max-w-2xl mx-auto text-lg">
+              A transparent, step-by-step process that aligns our incentives with your institution's growth.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+            {/* Connecting Line */}
+            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-red/50 to-transparent -translate-y-1/2 z-0" />
+
+            {[
+              { icon: Target, title: 'Define Targets', desc: 'We set admission goals, target demographics, and required cost-per-lead.' },
+              { icon: BarChart3, title: 'Build Funnels', desc: 'High-converting landing pages and tracking systems are deployed.' },
+              { icon: Rocket, title: 'Launch Campaigns', desc: 'Targeted ads go live across Google, Meta, and LinkedIn.' },
+              { icon: CheckCircle2, title: 'Nurture & Enroll', desc: 'We help your team nurture leads until they successfully enroll.' }
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 100 }}
+                className="relative z-10 flex flex-col items-center text-center p-8 rounded-2xl bg-white border border-black/5 hover:border-brand-red/30 hover:shadow-xl transition-all group"
+              >
+                <div className="w-16 h-16 rounded-full bg-brand-gray flex items-center justify-center mb-6 shadow-sm group-hover:bg-brand-red group-hover:text-white transition-colors duration-300">
+                  <step.icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-display font-bold mb-4">{step.title}</h3>
+                <p className="text-brand-black/60 text-sm leading-relaxed">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <ContactForm />
+
+      {/* Namaste / Thank You Section */}
+      <section className="py-32 bg-brand-white relative overflow-hidden flex flex-col items-center justify-center text-center border-t border-black/5">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-red/5 pointer-events-none" />
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="max-w-4xl mx-auto px-6 flex flex-col items-center relative z-10"
+        >
+          <motion.div
+            animate={{ 
+              rotateX: [0, 15, 0],
+              y: [0, 5, 0]
+            }}
+            transition={{ 
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="mb-10 text-brand-black drop-shadow-xl"
+            style={{ perspective: "1000px" }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-32 h-32 md:w-40 md:h-40">
+              <path d="M256 32c-14.8 0-27.5 10.1-31 24.4L199.2 169.1l-36.9-36.9c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l83.6 83.6c-18.7 18.2-30.6 43.6-30.6 71.7v80c0 35.3 28.7 64 64 64h44c35.3 0 64-28.7 64-64v-80c0-28.1-11.9-53.5-30.6-71.7l83.6-83.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-36.9 36.9L287 56.4c-3.5-14.3-16.2-24.4-31-24.4zM224 284.8v128c0 17.7 14.3 32 32 32s32-14.3 32-32v-128c0-17.7-14.3-32-32-32s-32 14.3-32 32z"/>
+            </svg>
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-7xl font-display font-bold mb-6 text-brand-black tracking-tight"
+          >
+            Thanks for Visiting
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-xl md:text-2xl text-brand-black/70 mb-12 max-w-2xl font-medium"
+          >
+            With full respect and gratitude. We look forward to partnering with your institution.
+          </motion.p>
+          
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+            className="w-32 h-1.5 bg-brand-red rounded-full mx-auto" 
+          />
+        </motion.div>
+      </section>
     </div>
   );
 }

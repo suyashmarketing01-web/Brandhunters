@@ -1,8 +1,10 @@
 import { motion, useInView, useScroll, useTransform } from 'motion/react';
-import { ArrowRight, Target, BarChart3, Rocket, CheckCircle2, ShieldCheck, Eye, Users, Sparkles, Trophy, Search, Code, Palette, Video, Star, Settings, Zap, Mail, Phone, MapPin } from 'lucide-react';
-import { FaGoogle, FaMeta, FaTiktok, FaLinkedin, FaChartLine, FaCode, FaRobot } from 'react-icons/fa6';
+import { ArrowRight, Target, BarChart3, Rocket, CheckCircle2, ShieldCheck, Eye, Users, Sparkles, Trophy, Search, Code, Palette, Video, Star, Settings, Zap, Mail, Phone, MapPin, ChevronDown, Clock, Award } from 'lucide-react';
+import { FaGoogle, FaMeta, FaTiktok, FaLinkedin, FaChartLine, FaCode, FaRobot, FaWhatsapp } from 'react-icons/fa6';
 import AnimatedBackground from '../components/AnimatedBackground';
 import ContactForm from '../components/ContactForm';
+import TrustBadges from '../components/TrustBadges';
+import WorkspacePhotos from '../components/WorkspacePhotos';
 import { useState, useEffect, useRef } from 'react';
 
 function AnimatedCounter({ value, suffix }: { value: number, suffix: string }) {
@@ -34,12 +36,53 @@ function AnimatedCounter({ value, suffix }: { value: number, suffix: string }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
+import SEO from '../components/SEO';
+
 export default function Home() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Brand Hunters Digital Marketing",
+    "image": "https://brandhunters.com/logo.png",
+    "description": "Stop paying digital marketing retainers. Brand Hunters is the #1 performance marketing agency. You only pay for generated leads and sales. We run your Facebook, Meta, and Google Ads at no risk.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pune",
+      "addressCountry": "IN"
+    },
+    "telephone": "+91-7798484935",
+    "url": "https://brandhunters.com"
+  };
+
   return (
     <div className="w-full overflow-hidden bg-brand-white text-brand-black">
+      <SEO 
+        title="Brand Hunters | #1 Pay After Performance Digital Marketing Agency"
+        description="Stop paying digital marketing retainers. Brand Hunters is a performance marketing agency where you pay only for results. We guarantee Google Ads top rankings and ROI."
+        keywords="results first digital marketing, digital marketing agency, performance marketing agency, seo company, best digital marketing agency"
+        canonical="/"
+        schema={schema}
+      />
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center pt-28 sm:pt-32 overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center pt-28 sm:pt-32 pb-20 overflow-hidden">
         <AnimatedBackground color="#C20000" />
+        
+        {/* Floating social proof */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2 }}
+          className="absolute top-36 sm:top-40 right-4 sm:right-12 z-20 glass-white rounded-full px-4 py-2 shadow-xl flex items-center gap-2"
+        >
+          <div className="flex -space-x-2">
+            {['bg-blue-500', 'bg-emerald-500', 'bg-purple-500'].map((c, i) => (
+              <div key={i} className={`w-7 h-7 rounded-full ${c} border-2 border-white text-white text-[10px] font-bold flex items-center justify-center`}>
+                {['S', 'D', 'M'][i]}
+              </div>
+            ))}
+          </div>
+          <span className="text-xs font-bold text-brand-black/80">47+ businesses trust us</span>
+        </motion.div>
         <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/80 to-white pointer-events-none" />
         
         {/* Floating Icons */}
@@ -87,10 +130,10 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 border border-black/10 text-sm font-medium text-brand-black/80 mb-8 backdrop-blur-sm"
+              className="animate-pulse-glow inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-red/10 border border-brand-red/20 text-sm font-bold text-brand-red mb-8 backdrop-blur-sm"
             >
-              <Trophy className="w-4 h-4 text-brand-red" />
-              <span>We believe in results, not plans.</span>
+              <Award className="w-4 h-4" />
+              <span>Pay After Performance — Zero Risk Model</span>
             </motion.div>
 
             <motion.h1
@@ -99,7 +142,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[1.1] mb-8"
             >
-              ROI First.<br />
+              Brand Hunters.<br />
               <span className="text-brand-red">
                 Payment Later.
               </span>
@@ -120,16 +163,48 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
               className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
             >
-              <a href="#contact" className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 bg-brand-red border border-transparent rounded-full hover:bg-brand-red-hover hover:shadow-[0_0_30px_rgba(194,0,0,0.4)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-red focus:ring-offset-white">
+              <a href="#contact" className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 bg-brand-red border border-transparent rounded-full hover:bg-brand-red-hover hover:shadow-[0_0_40px_rgba(194,0,0,0.5)] animate-pulse-glow">
                 Start Your Campaign
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#contact" className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-brand-black transition-all duration-300 bg-black/5 border border-black/10 rounded-full hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black/20 focus:ring-offset-white">
-                Book Free Strategy Call
+              <a href="https://wa.me/917798484935" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-brand-black transition-all duration-300 bg-black/5 border border-black/10 rounded-full hover:bg-black/10 gap-2">
+                <span className="text-[#25D366] flex items-center justify-center">
+                  <FaWhatsapp size={20} />
+                </span>
+                WhatsApp Us
               </a>
+            </motion.div>
+
+            {/* Trust badges */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-3 mt-8 text-xs font-bold text-brand-black/50"
+            >
+              {[
+                { icon: ShieldCheck, label: 'Zero Risk Model' },
+                { icon: Clock, label: 'Results in 15 Days' },
+                { icon: Star, label: '4.9★ on Google' },
+              ].map((badge, i) => (
+                <div key={i} className="flex items-center gap-1.5 bg-black/5 px-3 py-1.5 rounded-full">
+                  <badge.icon className="w-3.5 h-3.5 text-brand-red" />
+                  {badge.label}
+                </div>
+              ))}
             </motion.div>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-brand-black/30 z-20"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-widest">Scroll</span>
+          <ChevronDown className="w-4 h-4" />
+        </motion.div>
       </section>
 
       {/* Marquee Section */}
@@ -154,6 +229,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Agency Trust Badges & Workspace Photos */}
+      <TrustBadges type="agency" />
+      <WorkspacePhotos type="agency" />
 
       {/* Trust & Transparency (Moved to Top) */}
       <section className="py-24 relative overflow-hidden bg-brand-black text-white">
@@ -464,7 +543,7 @@ export default function Home() {
                   
                   <div>
                     <div className="flex justify-between text-sm mb-2">
-                      <span className="text-white font-medium">ROIFirst Agency</span>
+                      <span className="text-white font-medium">Brand Hunters</span>
                       <span className="text-brand-red font-mono font-bold">Pay on Success</span>
                     </div>
                     <div className="h-2 bg-white/10 rounded-full overflow-hidden">

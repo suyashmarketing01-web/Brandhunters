@@ -21,7 +21,7 @@ app.get('/api/health', (_req, res) => {
   res.json({ 
     status: 'ok', 
     timestamp: new Date().toISOString(),
-    service: 'ROIFirst API',
+    service: 'Brand Hunters API',
   });
 });
 
@@ -30,7 +30,7 @@ app.use('/api', contactRouter);
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`\n🚀 ROIFirst Backend Server`);
+  console.log(`\n🚀 Brand Hunters Backend Server`);
   console.log(`   ➜ Local:   http://localhost:${PORT}`);
   console.log(`   ➜ Health:  http://localhost:${PORT}/api/health`);
   console.log(`   ➜ API:     http://localhost:${PORT}/api/contact\n`);

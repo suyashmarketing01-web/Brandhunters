@@ -28,42 +28,42 @@ export default function CursorFollower() {
   const moveTimeout = useRef<NodeJS.Timeout | null>(null);
   const particleId = useRef(0);
 
-  // Map sections to specific emotions and actions
+  // Map sections to marketing-themed emojis
   const getSectionEmoji = (sectionId: string) => {
-    if (isOverButton) return '🎉';
-    if (sectionId.includes('review') || sectionId.includes('success')) return '❤️';
-    if (sectionId.includes('hero')) return '⚡';
-    if (sectionId.includes('service') || sectionId.includes('detail')) return '✨';
-    if (sectionId.includes('work') || sectionId.includes('curriculum')) return '⭐';
-    if (sectionId.includes('contact') || sectionId.includes('footer')) return '👋';
-    return '💨';
+    if (isOverButton) return '🎯';
+    if (sectionId.includes('review') || sectionId.includes('success')) return '⭐';
+    if (sectionId.includes('hero')) return '🚀';
+    if (sectionId.includes('service') || sectionId.includes('detail')) return '📈';
+    if (sectionId.includes('work') || sectionId.includes('curriculum')) return '💡';
+    if (sectionId.includes('contact') || sectionId.includes('footer')) return '✉️';
+    return '✨';
   };
 
   useEffect(() => {
+    // Don't show on mobile/touch devices
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) return;
+
     const handleMouseMove = (e: MouseEvent) => {
-      // Detect element under cursor
       const element = document.elementFromPoint(e.clientX, e.clientY);
       
-      // Check if hovering over a button or link
       const interactiveElement = element?.closest('button, a');
       const overButton = !!interactiveElement;
       setIsOverButton(overButton);
 
-      // Set the spring target
-      mouseX.set(e.clientX - (direction === 'right' ? 40 : -10));
-      mouseY.set(e.clientY - (overButton ? 60 : 10));
+      mouseX.set(e.clientX - (direction === 'right' ? 30 : -5));
+      mouseY.set(e.clientY - (overButton ? 50 : 5));
 
       if (!isVisible) setIsVisible(true);
 
-      // Detect section under cursor
       const section = element?.closest('section, [id]');
       if (section?.id) {
         setCurrentSection(section.id.toLowerCase());
       }
 
-      const pikaX = cursorX.get();
-      if (Math.abs(e.clientX - pikaX) > 10) {
-        setDirection(e.clientX > pikaX ? 'right' : 'left');
+      const followerX = cursorX.get();
+      if (Math.abs(e.clientX - followerX) > 10) {
+        setDirection(e.clientX > followerX ? 'right' : 'left');
       }
 
       const deltaX = e.clientX - lastX.current;
@@ -134,42 +134,90 @@ export default function CursorFollower() {
           scaleX: direction === 'left' ? -1 : 1,
         }}
         animate={isOverButton ? {
-          y: [0, -15, 0],
-          rotate: [0, -10, 10, 0],
+          y: [0, -10, 0],
+          rotate: [0, -5, 5, 0],
         } : {}}
         transition={isOverButton ? {
-          y: { repeat: Infinity, duration: 0.4 },
-          rotate: { repeat: Infinity, duration: 0.3 }
+          y: { repeat: Infinity, duration: 0.5 },
+          rotate: { repeat: Infinity, duration: 0.4 }
         } : {}}
       >
         <div className="relative">
+          {/* Glow effect when moving */}
           {(isMoving || isOverButton) && (
             <motion.div 
               animate={{ 
-                x: [-5, 5, -5], 
-                opacity: isOverButton ? [0.4, 0.8, 0.4] : [0.2, 0.5, 0.2],
-                scale: isOverButton ? [1, 1.2, 1] : 1
+                x: [-3, 3, -3], 
+                opacity: isOverButton ? [0.3, 0.6, 0.3] : [0.1, 0.3, 0.1],
+                scale: isOverButton ? [1, 1.3, 1] : 1
               }}
-              transition={{ repeat: Infinity, duration: 0.1 }}
-              className={`absolute inset-0 blur-xl rounded-full ${isOverButton ? 'bg-pink-400/30' : 'bg-yellow-400/10'}`}
+              transition={{ repeat: Infinity, duration: 0.15 }}
+              className={`absolute inset-0 blur-xl rounded-full ${isOverButton ? 'bg-red-500/40' : 'bg-red-400/15'}`}
             />
           )}
           
-          <img 
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
-            alt="Pikachu Chaser" 
-            className={`w-16 h-16 object-contain drop-shadow-xl transition-all duration-300 ${
-              isOverButton ? 'brightness-125 scale-125' : isMoving ? 'brightness-110 skew-x-[-10deg]' : 'brightness-100'
+          {/* Marketing Rocket SVG */}
+          <motion.svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            className={`w-12 h-12 drop-shadow-xl transition-all duration-300 ${
+              isOverButton ? 'scale-125' : isMoving ? 'scale-110' : 'scale-100'
             }`}
-            referrerPolicy="no-referrer"
-          />
+            animate={isMoving ? { rotate: [0, -15] } : { rotate: 0 }}
+          >
+            {/* Rocket body */}
+            <defs>
+              <linearGradient id="rocketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#C20000" />
+                <stop offset="100%" stopColor="#FF4444" />
+              </linearGradient>
+              <linearGradient id="windowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#87CEEB" />
+                <stop offset="100%" stopColor="#4AAED9" />
+              </linearGradient>
+            </defs>
+            
+            {/* Flame trail */}
+            <motion.g
+              animate={isMoving ? { 
+                opacity: [0.6, 1, 0.6],
+                scaleY: [0.8, 1.2, 0.8]
+              } : {
+                opacity: [0.3, 0.6, 0.3],
+                scaleY: [0.6, 0.9, 0.6]
+              }}
+              transition={{ repeat: Infinity, duration: 0.2 }}
+              style={{ transformOrigin: '32px 55px' }}
+            >
+              <path d="M28 52 L32 62 L36 52" fill="#FF8C00" opacity="0.9" />
+              <path d="M30 52 L32 58 L34 52" fill="#FFD700" opacity="0.8" />
+            </motion.g>
+            
+            {/* Rocket main body */}
+            <path d="M32 8 C32 8 22 20 22 38 C22 44 26 50 28 52 L36 52 C38 50 42 44 42 38 C42 20 32 8 32 8Z" 
+                  fill="url(#rocketGrad)" stroke="#A00000" strokeWidth="0.5" />
+            
+            {/* Rocket window */}
+            <circle cx="32" cy="28" r="5" fill="url(#windowGrad)" stroke="#fff" strokeWidth="1.5" />
+            <circle cx="31" cy="27" r="1.5" fill="white" opacity="0.7" />
+            
+            {/* Rocket fins */}
+            <path d="M22 40 L16 48 L22 48 Z" fill="#A00000" />
+            <path d="M42 40 L48 48 L42 48 Z" fill="#A00000" />
+            
+            {/* Rocket nose cone highlight */}
+            <path d="M32 8 C32 8 28 16 27 22" stroke="white" strokeWidth="1" opacity="0.3" fill="none" strokeLinecap="round" />
+            
+            {/* ROI text on body */}
+            <text x="32" y="42" textAnchor="middle" fill="white" fontSize="6" fontWeight="bold" fontFamily="sans-serif">ROI</text>
+          </motion.svg>
           
-          {/* Section specific indicator */}
+          {/* Section emoji indicator */}
           <motion.div
-            key={currentSection + (isOverButton ? '-dance' : '')}
+            key={currentSection + (isOverButton ? '-active' : '')}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className={`absolute -top-4 -right-2 backdrop-blur-sm rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-sm border border-black/5 ${isOverButton ? 'bg-pink-100/90' : 'bg-white/80'}`}
+            className={`absolute -top-3 -right-1 backdrop-blur-sm rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-md border ${isOverButton ? 'bg-red-50/90 border-red-200' : 'bg-white/90 border-black/5'}`}
           >
             {getSectionEmoji(currentSection)}
           </motion.div>
@@ -178,6 +226,3 @@ export default function CursorFollower() {
     </>
   );
 }
-
-
-

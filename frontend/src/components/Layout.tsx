@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Menu, X, ArrowRight, Mail, Phone, MapPin, Linkedin, Twitter, Instagram, MessageSquare } from 'lucide-react';
+import { Menu, X, ArrowRight, Mail, Phone, MapPin, Linkedin, Facebook, Instagram, MessageSquare } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
 import { useState, useEffect, useRef } from 'react';
 import ContactForm from './ContactForm';
@@ -102,14 +102,14 @@ export default function Layout({ children }: { children: ReactNode }) {
     if (location.pathname === '/education') {
       return (
         <div className="bg-brand-red text-white text-[10px] font-bold tracking-[0.2em] uppercase py-2 text-center w-full z-[60] relative shadow-inner">
-          ROIFirst Education — Marketing for Institutions
+          Brand Hunters Education — Marketing for Institutions
         </div>
       );
     }
     if (location.pathname === '/course') {
       return (
         <div className="bg-zinc-900 text-brand-red border-b border-white/5 text-[10px] font-bold tracking-[0.2em] uppercase py-2 text-center w-full z-[60] relative">
-          ROIFirst Academy — Digital Marketing Courses
+          Brand Hunters Academy — Digital Marketing Courses
         </div>
       );
     }
@@ -124,8 +124,8 @@ export default function Layout({ children }: { children: ReactNode }) {
       
       {/* Navigation */}
       <header
-        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-black/5 py-4 shadow-sm' : 'bg-transparent py-6'
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-black/5 shadow-sm ${
+          isScrolled ? 'py-4' : 'py-6'
         }`}
         style={{ 
           top: isScrolled ? '0' : (
@@ -134,19 +134,18 @@ export default function Layout({ children }: { children: ReactNode }) {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <Link to="/" className={`text-2xl font-display font-bold tracking-tighter flex items-center gap-2 ${location.pathname === '/course' && !isScrolled ? 'text-white' : 'text-brand-black'}`}>
-            <span className="text-brand-red">●</span>
-            ROIFirst
-            {location.pathname === '/education' && <span className="text-brand-black/40 font-normal text-xl hidden sm:inline">| Education</span>}
-            {location.pathname === '/course' && <span className={`${!isScrolled ? 'text-white/60' : 'text-brand-black/40'} font-normal text-xl hidden sm:inline`}>| Academy</span>}
+           <Link to="/" className="flex items-center gap-2">
+            <img src="/images/logo-text.png" alt="Brand Hunters Digital Marketing Agency" className={`transition-all duration-300 ${isScrolled ? 'h-16 mr-14' : 'h-20 mr-20'} w-auto scale-[1.8] origin-left`} />
+            {location.pathname === '/education' && <span className="text-brand-black/40 font-display font-normal text-xl hidden sm:inline">| Education</span>}
+            {location.pathname === '/course' && <span className="text-brand-black/40 font-display font-normal text-xl hidden sm:inline">| Academy</span>}
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link to="/" className={`text-sm font-medium transition-colors ${location.pathname === '/' ? 'text-brand-red' : (location.pathname === '/course' && !isScrolled ? 'text-white hover:text-brand-red' : 'text-brand-black hover:text-brand-red')}`}>Agency</Link>
-            <Link to="/education" className={`text-sm font-medium transition-colors ${location.pathname === '/education' ? 'text-brand-red' : (location.pathname === '/course' && !isScrolled ? 'text-white hover:text-brand-red' : 'text-brand-black hover:text-brand-red')}`}>Education</Link>
-            <Link to="/course" className={`text-sm font-medium transition-colors ${location.pathname === '/course' ? 'text-brand-red' : (location.pathname === '/course' && !isScrolled ? 'text-white hover:text-brand-red' : 'text-brand-black hover:text-brand-red')}`}>Academy</Link>
-            <a href={contactLink} className={`text-sm font-medium transition-colors ${location.pathname === '/course' && !isScrolled ? 'text-white hover:text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Contact</a>
+            <Link to="/" className={`text-sm font-medium transition-colors ${location.pathname === '/' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Agency</Link>
+            <Link to="/education" className={`text-sm font-medium transition-colors ${location.pathname === '/education' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Education</Link>
+            <Link to="/course" className={`text-sm font-medium transition-colors ${location.pathname === '/course' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Academy</Link>
+            <a href={contactLink} className="text-sm font-medium transition-colors text-brand-black hover:text-brand-red">Contact</a>
             <Link
               to="/course"
               className="group relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 bg-brand-red border border-transparent rounded-full hover:bg-brand-red-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-red"
@@ -164,7 +163,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               </div>
             )}
             <button
-              className={`p-2 ${location.pathname === '/course' && !isScrolled ? 'text-white' : 'text-brand-black'}`}
+              className="p-2 text-brand-black hover:text-brand-red transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -219,24 +218,22 @@ export default function Layout({ children }: { children: ReactNode }) {
       {/* Footer */}
       <footer id="footer" className="bg-brand-black text-white border-t border-white/10 pt-20 pb-24 md:pb-10">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-16">
             <div className="col-span-1 md:col-span-2">
-              <Link to="/" className="text-2xl font-display font-bold tracking-tighter flex items-center gap-2 mb-2 text-white">
-                <span className="text-brand-red">●</span>
-                ROIFirst
+              <Link to="/" className="flex items-center gap-2 mb-4">
+                <div className="bg-white rounded-2xl p-3 inline-block">
+                  <img src="/images/logo-full.png" alt="Brand Hunters Digital Marketing Agency" className="h-20 w-auto" />
+                </div>
               </Link>
               <p className="text-brand-red font-medium text-sm mb-6 tracking-wide uppercase">We believe in results, not plans.</p>
               <p className="text-white/70 max-w-md mb-8">
                 We operate on a pay-after-performance model for the first 15 days. You only pay when we deliver measurable results. Lower risk, complete transparency, and shared accountability.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red hover:text-white transition-all duration-300">
-                  <Linkedin className="w-5 h-5" />
+                <a href="https://www.facebook.com/share/1Ccia2dq57/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red hover:text-white transition-all duration-300">
+                  <Facebook className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red hover:text-white transition-all duration-300">
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red hover:text-white transition-all duration-300">
+                <a href="https://www.instagram.com/sg_waterproofing11?igsh=dDJvcmh2dWhhZWdp" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red hover:text-white transition-all duration-300">
                   <Instagram className="w-5 h-5" />
                 </a>
               </div>
@@ -276,11 +273,18 @@ export default function Layout({ children }: { children: ReactNode }) {
                 </li>
               </ul>
             </div>
+            <div>
+              <h4 className="font-display font-semibold text-lg mb-6 text-white">Locations</h4>
+              <ul className="space-y-4">
+                <li><Link to="/digital-marketing-agency-pune" className="text-white/70 hover:text-brand-red transition-colors font-medium">Digital Marketing Pune</Link></li>
+                <li><Link to="/digital-marketing-agency-mumbai" className="text-white/70 hover:text-brand-red transition-colors font-medium">Digital Marketing Mumbai</Link></li>
+              </ul>
+            </div>
           </div>
 
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-white/50 text-sm">
-              © {new Date().getFullYear()} ROIFirst Agency. All rights reserved.
+              © {new Date().getFullYear()} Brand Hunters. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm text-white/50">
               <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
