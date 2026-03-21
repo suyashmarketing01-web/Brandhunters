@@ -295,12 +295,12 @@ export default function Layout({ children }: { children: ReactNode }) {
       </footer>
 
       {/* Floating Action Buttons */}
-      <div className="fixed bottom-6 right-6 z-[100] flex flex-col gap-3 items-end">
-        {/* Support Badge */}
+      <div className="fixed bottom-4 right-3 md:bottom-6 md:right-6 z-[100] flex flex-col gap-2 md:gap-3 items-end">
+        {/* Support Badge - hidden on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white/90 backdrop-blur-sm border border-brand-red/20 px-3 py-1 rounded-full shadow-lg mb-1"
+          className="hidden md:block bg-white/90 backdrop-blur-sm border border-brand-red/20 px-3 py-1 rounded-full shadow-lg mb-1"
         >
           <p className="text-[10px] font-bold text-brand-red uppercase tracking-tighter flex items-center gap-1">
             <span className="w-1.5 h-1.5 bg-brand-red rounded-full animate-pulse" />
@@ -316,10 +316,10 @@ export default function Layout({ children }: { children: ReactNode }) {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           whileHover={{ scale: 1.05, x: -5 }}
-          className="bg-[#25D366] text-white px-5 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all"
+          className="bg-[#25D366] text-white p-2.5 md:px-5 md:py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all"
         >
-          <FaWhatsapp size={24} />
-          <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">WhatsApp Now</span>
+          <FaWhatsapp size={20} className="md:w-6 md:h-6" />
+          <span className="hidden md:inline max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">WhatsApp Now</span>
         </motion.a>
 
         {/* Call Button */}
@@ -329,10 +329,10 @@ export default function Layout({ children }: { children: ReactNode }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
           whileHover={{ scale: 1.05, x: -5 }}
-          className="bg-brand-black text-white px-5 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all border border-white/10"
+          className="bg-brand-black text-white p-2.5 md:px-5 md:py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all border border-white/10"
         >
           <Phone className="w-5 h-5" />
-          <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">Call Now</span>
+          <span className="hidden md:inline max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">Call Now</span>
         </motion.a>
 
         {/* Enquire Button */}
@@ -342,10 +342,10 @@ export default function Layout({ children }: { children: ReactNode }) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
           whileHover={{ scale: 1.05, x: -5 }}
-          className="bg-brand-red text-white px-5 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all"
+          className="bg-brand-red text-white p-2.5 md:px-5 md:py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all"
         >
           <Mail className="w-5 h-5" />
-          <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap text-sm">Enquire Now</span>
+          <span className="hidden md:inline max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap text-sm">Enquire Now</span>
         </motion.a>
       </div>
     </div>

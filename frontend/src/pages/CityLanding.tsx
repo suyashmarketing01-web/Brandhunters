@@ -152,7 +152,7 @@ export default function CityLanding({ city }: { city: string }) {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
-          className="absolute top-36 sm:top-40 right-4 sm:right-12 z-20 glass-white rounded-full px-4 py-2 shadow-xl flex items-center gap-2"
+          className="absolute top-36 sm:top-40 right-4 sm:right-12 z-20 glass-white rounded-full px-4 py-2 shadow-xl hidden sm:flex items-center gap-2"
         >
           <div className="flex -space-x-2">
             {['bg-blue-500', 'bg-emerald-500', 'bg-purple-500'].map((c, i) => (
@@ -280,7 +280,7 @@ export default function CityLanding({ city }: { city: string }) {
       <TeamShowcase type="agency" />
 
       {/* ═══════════ SERVICES ═══════════ */}
-      <section id="services" className="py-24 bg-brand-gray relative">
+      <section id="services" className="py-12 sm:py-24 bg-brand-gray relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-sm font-bold text-brand-red uppercase tracking-widest mb-4">
@@ -333,7 +333,7 @@ export default function CityLanding({ city }: { city: string }) {
       </section>
 
       {/* ═══════════ HOW IT WORKS ═══════════ */}
-      <section className="py-24 bg-white relative">
+      <section className="py-12 sm:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="text-sm font-bold text-brand-red uppercase tracking-widest mb-4">Our Process</div>
@@ -369,7 +369,7 @@ export default function CityLanding({ city }: { city: string }) {
       </section>
 
       {/* ═══════════ WHY US + SOCIAL PROOF ═══════════ */}
-      <section className="py-24 bg-brand-black text-white relative overflow-hidden">
+      <section className="py-12 sm:py-24 bg-brand-black text-white relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-brand-red/10 blur-[120px] rounded-full pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
@@ -504,7 +504,7 @@ export default function CityLanding({ city }: { city: string }) {
       </section>
 
       {/* ═══════════ FAQ ═══════════ */}
-      <section className="py-24 bg-brand-gray">
+      <section className="py-12 sm:py-24 bg-brand-gray">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="text-sm font-bold text-brand-red uppercase tracking-widest mb-4">Common Questions</div>

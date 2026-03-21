@@ -73,7 +73,7 @@ export default function WorkspacePhotos({ type = 'agency' }: WorkspacePhotosProp
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-brand-gray relative overflow-hidden">
+    <section className="py-12 sm:py-24 bg-brand-gray relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -104,15 +104,15 @@ export default function WorkspacePhotos({ type = 'agency' }: WorkspacePhotosProp
             <img 
               src={photo1.src} 
               alt={photo1.alt} 
-              className="w-full h-[300px] sm:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-[200px] sm:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red text-white text-xs font-bold mb-3">
                 <photo1.badgeIcon className="w-3 h-3" /> {photo1.badgeText}
               </div>
-              <h3 className="text-xl sm:text-2xl font-display font-bold text-white mb-2">{photo1.title}</h3>
-              <p className="text-white/80 text-sm">{photo1.desc}</p>
+              <h3 className="text-lg sm:text-2xl font-display font-bold text-white mb-1 sm:mb-2">{photo1.title}</h3>
+              <p className="text-white/80 text-xs sm:text-sm hidden sm:block">{photo1.desc}</p>
             </div>
           </motion.div>
 
@@ -127,15 +127,15 @@ export default function WorkspacePhotos({ type = 'agency' }: WorkspacePhotosProp
             <img 
               src={photo2.src} 
               alt={photo2.alt} 
-              className="w-full h-[300px] sm:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-[200px] sm:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red text-white text-xs font-bold mb-3">
                 <photo2.badgeIcon className="w-3 h-3" /> {photo2.badgeText}
               </div>
-              <h3 className="text-xl sm:text-2xl font-display font-bold text-white mb-2">{photo2.title}</h3>
-              <p className="text-white/80 text-sm">{photo2.desc}</p>
+              <h3 className="text-lg sm:text-2xl font-display font-bold text-white mb-1 sm:mb-2">{photo2.title}</h3>
+              <p className="text-white/80 text-xs sm:text-sm hidden sm:block">{photo2.desc}</p>
             </div>
           </motion.div>
         </div>

@@ -561,7 +561,7 @@ export default function Course() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 relative bg-brand-gray">
+      <section id="how-it-works" className="py-12 sm:py-24 relative bg-brand-gray">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">Your Path to a Guaranteed Placement</h2>
@@ -745,7 +745,7 @@ export default function Course() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-display font-bold mb-6 text-brand-black tracking-tight"
+            className="text-4xl sm:text-5xl md:text-7xl font-display font-bold mb-6 text-brand-black tracking-tight"
           >
             Thanks for Visiting
           </motion.h2>

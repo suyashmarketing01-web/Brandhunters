@@ -55,7 +55,7 @@ export default function TrustBadges({ type = 'agency' }: TrustBadgeProps) {
           </h2>
         </motion.div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {badges.map((badge, idx) => (
             <motion.div
               key={idx}

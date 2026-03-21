@@ -60,7 +60,7 @@ export default function TeamShowcase({ type = 'agency' }: TeamShowcaseProps) {
   };
 
   return (
-    <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
+    <section className="py-12 sm:py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -85,25 +85,25 @@ export default function TeamShowcase({ type = 'agency' }: TeamShowcaseProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-3xl overflow-hidden mb-8 group"
+          className="relative rounded-2xl sm:rounded-3xl overflow-hidden mb-6 sm:mb-8 group"
         >
           <img 
             src={content.photo} 
             alt={content.photoAlt} 
-            className="w-full h-[300px] sm:h-[450px] lg:h-[500px] object-cover group-hover:scale-[1.02] transition-transform duration-700"
+            className="w-full h-[220px] sm:h-[450px] lg:h-[500px] object-cover group-hover:scale-[1.02] transition-transform duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-10">
             <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red text-white text-xs font-bold mb-3">
                   <content.badgeIcon className="w-3 h-3" /> {content.badgeText}
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-display font-bold text-white">{content.photoTitle}</h3>
-                <p className="text-white/80 text-sm mt-1">{content.photoDesc}</p>
+                <h3 className="text-lg sm:text-3xl font-display font-bold text-white">{content.photoTitle}</h3>
+                <p className="text-white/80 text-xs sm:text-sm mt-1 hidden sm:block">{content.photoDesc}</p>
               </div>
               <div className="flex items-center gap-3">
-                <div className="bg-white/20 backdrop-blur-md px-4 py-2 rounded-xl text-white text-sm font-bold">
+                <div className="bg-white/20 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-white text-xs sm:text-sm font-bold">
                   {content.statPill}
                 </div>
               </div>
@@ -112,7 +112,7 @@ export default function TeamShowcase({ type = 'agency' }: TeamShowcaseProps) {
         </motion.div>
 
         {/* Achievement Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-3 gap-2 sm:gap-6">
           {content.achievements.map((item, idx) => (
             <motion.div
               key={idx}
@@ -120,14 +120,14 @@ export default function TeamShowcase({ type = 'agency' }: TeamShowcaseProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.15 }}
-              className="p-6 sm:p-8 rounded-2xl bg-brand-gray border border-black/5 hover:border-brand-red/30 hover:shadow-xl transition-all group text-center"
+              className="p-3 sm:p-8 rounded-xl sm:rounded-2xl bg-brand-gray border border-black/5 hover:border-brand-red/30 hover:shadow-xl transition-all group text-center"
             >
-              <div className="w-14 h-14 rounded-full bg-brand-red/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-red group-hover:text-white transition-colors">
-                <item.icon className="w-7 h-7 text-brand-red group-hover:text-white transition-colors" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-brand-red/10 flex items-center justify-center mx-auto mb-2 sm:mb-4 group-hover:bg-brand-red group-hover:text-white transition-colors">
+                <item.icon className="w-5 h-5 sm:w-7 sm:h-7 text-brand-red group-hover:text-white transition-colors" />
               </div>
-              <div className="text-3xl font-display font-bold text-brand-red mb-1">{item.stat}</div>
-              <div className="text-base font-bold mb-1">{item.label}</div>
-              <div className="text-sm text-brand-black/60">{item.detail}</div>
+              <div className="text-xl sm:text-3xl font-display font-bold text-brand-red mb-0.5 sm:mb-1">{item.stat}</div>
+              <div className="text-xs sm:text-base font-bold mb-0.5 sm:mb-1">{item.label}</div>
+              <div className="text-[10px] sm:text-sm text-brand-black/60 hidden sm:block">{item.detail}</div>
             </motion.div>
           ))}
         </div>

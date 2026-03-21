@@ -124,7 +124,7 @@ export default function Education() {
               initial={{ opacity: 0, y: 50, z: 200, rotateX: 20 }}
               animate={{ opacity: 1, y: 0, z: 0, rotateX: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: "backOut" }}
-              className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[1] mb-8"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[1] mb-6 sm:mb-8"
             >
               Fill Your Classrooms with <br />
               <span className="text-brand-red relative">
@@ -228,7 +228,7 @@ export default function Education() {
       <TeamShowcase type="education" />
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-brand-gray relative">
+      <section id="services" className="py-12 sm:py-24 bg-brand-gray relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">Tailored Solutions for Education</h2>
@@ -288,7 +288,7 @@ export default function Education() {
       </section>
 
       {/* Why Us Section */}
-      <section className="py-24 bg-white">
+      <section className="py-12 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -361,7 +361,7 @@ export default function Education() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 relative bg-brand-gray">
+      <section id="how-it-works" className="py-12 sm:py-24 relative bg-brand-gray">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">Our Admission Growth Process</h2>
@@ -436,7 +436,7 @@ export default function Education() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-display font-bold mb-6 text-brand-black tracking-tight"
+            className="text-4xl sm:text-5xl md:text-7xl font-display font-bold mb-6 text-brand-black tracking-tight"
           >
             Thanks for Visiting
           </motion.h2>

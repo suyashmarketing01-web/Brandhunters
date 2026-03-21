@@ -61,11 +61,11 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-brand-gray relative overflow-hidden border-t border-black/5">
+    <section id="contact" className="py-12 sm:py-24 bg-brand-gray relative overflow-hidden border-t border-black/5">
       <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-red/5 skew-x-12 translate-x-1/4 pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}

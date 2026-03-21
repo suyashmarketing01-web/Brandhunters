@@ -83,7 +83,7 @@ export default function Home() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2 }}
-          className="absolute top-36 sm:top-40 right-4 sm:right-12 z-20 glass-white rounded-full px-4 py-2 shadow-xl flex items-center gap-2"
+          className="absolute top-36 sm:top-40 right-4 sm:right-12 z-20 glass-white rounded-full px-4 py-2 shadow-xl hidden sm:flex items-center gap-2"
         >
           <div className="flex -space-x-2">
             {['bg-blue-500', 'bg-emerald-500', 'bg-purple-500'].map((c, i) => (
@@ -150,7 +150,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[1.1] mb-8"
+              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[1.1] mb-6 sm:mb-8"
             >
               Brand Hunters.<br />
               <span className="text-brand-red">
@@ -246,7 +246,7 @@ export default function Home() {
       <TeamShowcase type="agency" />
 
       {/* Trust & Transparency (Moved to Top) */}
-      <section className="py-24 relative overflow-hidden bg-brand-black text-white">
+      <section className="py-12 sm:py-24 relative overflow-hidden bg-brand-black text-white">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-brand-red/10 blur-[120px] rounded-full pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -292,7 +292,7 @@ export default function Home() {
       </section>
 
       {/* Services Section (Updated with PPC focus and new services) */}
-      <section id="services" className="py-24 bg-brand-gray relative">
+      <section id="services" className="py-12 sm:py-24 bg-brand-gray relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">Our Core Focus: PPC</h2>
@@ -380,7 +380,7 @@ export default function Home() {
       </section>
 
       {/* Google Reviews Section */}
-      <section id="reviews" className="py-24 bg-brand-white relative overflow-hidden border-t border-black/5">
+      <section id="reviews" className="py-12 sm:py-24 bg-brand-white relative overflow-hidden border-t border-black/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
             <div className="max-w-2xl">
@@ -461,7 +461,7 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-24 relative bg-white">
+      <section id="how-it-works" className="py-12 sm:py-24 relative bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">How Our Model Works</h2>
@@ -500,7 +500,7 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24 relative bg-brand-black text-white">
+      <section className="py-12 sm:py-24 relative bg-brand-black text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -618,7 +618,7 @@ export default function Home() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-display font-bold mb-6 text-brand-black tracking-tight"
+            className="text-4xl sm:text-5xl md:text-7xl font-display font-bold mb-6 text-brand-black tracking-tight"
           >
             Thanks for Visiting
           </motion.h2>
