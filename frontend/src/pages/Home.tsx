@@ -70,12 +70,12 @@ export default function Home() {
           <img 
             src="/images/agency/strategy.png" 
             alt="Agency Background" 
-            className="w-full h-full object-cover blur-xl sm:blur-2xl opacity-30 scale-105 mix-blend-multiply"
+            className="w-full h-full object-cover blur-sm opacity-20 scale-110"
           />
         </div>
         
         <AnimatedBackground color="#C20000" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-white pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/60 to-white pointer-events-none z-[1]" />
         
         {/* Floating social proof */}
         <motion.div

@@ -125,7 +125,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       {/* Navigation */}
       <header
         className={`fixed left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-black/5 shadow-sm ${
-          isScrolled ? 'py-4' : 'py-6'
+          isScrolled ? 'py-1' : 'py-2'
         }`}
         style={{ 
           top: isScrolled ? '0' : (
@@ -133,9 +133,9 @@ export default function Layout({ children }: { children: ReactNode }) {
           )
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-           <Link to="/" className="flex items-center gap-2 md:gap-4 -ml-2 sm:-ml-3 md:-ml-4">
-            <img src="/images/logo-text.png" alt="Brand Hunters Digital Marketing Agency" className={`transition-all duration-300 w-auto ${isScrolled ? 'h-8 sm:h-12 md:h-14' : 'h-10 sm:h-14 md:h-[72px]'}`} />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+           <Link to="/" className="flex items-center gap-2 md:gap-3 shrink-0">
+            <img src="/images/logo-text.png" alt="Brand Hunters Digital Marketing Agency" className={`transition-all duration-300 w-auto ${isScrolled ? 'h-10 sm:h-12 md:h-16' : 'h-14 sm:h-16 md:h-20'}`} />
             {location.pathname === '/education' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden sm:inline">| Education</span>}
             {location.pathname === '/course' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden sm:inline">| Academy</span>}
           </Link>

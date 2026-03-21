@@ -41,12 +41,12 @@ export default function Course() {
           <img 
             src="/images/academy/classroom.png" 
             alt="Academy Background" 
-            className="w-full h-full object-cover blur-xl sm:blur-2xl opacity-40 scale-105"
+            className="w-full h-full object-cover blur-sm opacity-40 scale-110"
           />
         </div>
         
         <AnimatedBackground color="#E60000" type="grid" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90 pointer-events-none z-[1]" />
         
         {/* Floating Icons */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

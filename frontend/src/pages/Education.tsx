@@ -56,7 +56,7 @@ export default function Education() {
           <img 
             src="/images/education/strategy.png" 
             alt="Education Background" 
-            className="w-full h-full object-cover blur-xl sm:blur-2xl opacity-30 scale-105 mix-blend-multiply"
+            className="w-full h-full object-cover blur-sm opacity-20 scale-110"
           />
         </div>
         
@@ -94,7 +94,7 @@ export default function Education() {
           ))}
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-white pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/60 to-white pointer-events-none z-[1]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center lg:text-left flex flex-col lg:flex-row items-center gap-16" style={{ transformStyle: 'preserve-3d' }}>
           <div className="flex-1 flex flex-col items-center lg:items-start">
