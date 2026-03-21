@@ -134,10 +134,10 @@ export default function Layout({ children }: { children: ReactNode }) {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-           <Link to="/" className="flex items-center gap-2">
-            <img src="/images/logo-text.png" alt="Brand Hunters Digital Marketing Agency" className={`transition-all duration-300 ${isScrolled ? 'h-16 mr-14' : 'h-20 mr-20'} w-auto scale-[1.8] origin-left`} />
-            {location.pathname === '/education' && <span className="text-brand-black/40 font-display font-normal text-xl hidden sm:inline">| Education</span>}
-            {location.pathname === '/course' && <span className="text-brand-black/40 font-display font-normal text-xl hidden sm:inline">| Academy</span>}
+           <Link to="/" className="flex items-center gap-2 md:gap-4">
+            <img src="/images/logo-text.png" alt="Brand Hunters Digital Marketing Agency" className={`transition-all duration-300 w-auto ${isScrolled ? 'h-8 sm:h-12 md:h-14' : 'h-10 sm:h-14 md:h-[72px]'}`} />
+            {location.pathname === '/education' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden sm:inline">| Education</span>}
+            {location.pathname === '/course' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden sm:inline">| Academy</span>}
           </Link>
 
           {/* Desktop Nav */}
@@ -218,18 +218,18 @@ export default function Layout({ children }: { children: ReactNode }) {
       {/* Footer */}
       <footer id="footer" className="bg-brand-black text-white border-t border-white/10 pt-20 pb-24 md:pb-10">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-16">
-            <div className="col-span-1 md:col-span-2">
-              <Link to="/" className="flex items-center gap-2 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8 mb-16 text-center md:text-left">
+            <div className="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
+              <Link to="/" className="flex items-center justify-center md:justify-start gap-2 mb-4">
                 <div className="bg-white rounded-2xl p-3 inline-block">
-                  <img src="/images/logo-full.png" alt="Brand Hunters Digital Marketing Agency" className="h-20 w-auto" />
+                  <img src="/images/logo-full.png" alt="Brand Hunters Digital Marketing Agency" className="h-16 md:h-20 w-auto" />
                 </div>
               </Link>
               <p className="text-brand-red font-medium text-sm mb-6 tracking-wide uppercase">We believe in results, not plans.</p>
-              <p className="text-white/70 max-w-md mb-8">
+              <p className="text-white/70 max-w-md mb-8 mx-auto md:mx-0">
                 We operate on a pay-after-performance model for the first 15 days. You only pay when we deliver measurable results. Lower risk, complete transparency, and shared accountability.
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-4 justify-center md:justify-start">
                 <a href="https://www.facebook.com/share/1Ccia2dq57/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-red hover:text-white transition-all duration-300">
                   <Facebook className="w-5 h-5" />
                 </a>
@@ -252,20 +252,20 @@ export default function Layout({ children }: { children: ReactNode }) {
 
             <div>
               <h4 className="font-display font-semibold text-lg mb-6 text-white">Contact</h4>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3 text-white/70">
+              <ul className="space-y-4 flex flex-col items-center md:items-start">
+                <li className="flex flex-col md:flex-row items-center gap-3 text-white/70">
                   <Mail className="w-5 h-5 shrink-0 text-brand-red" />
                   <span>suyashmarketing365@gmail.com</span>
                 </li>
-                <li className="flex items-start gap-3 text-white/70">
+                <li className="flex flex-col md:flex-row items-center gap-3 text-white/70">
                   <Phone className="w-5 h-5 shrink-0 text-brand-red" />
-                  <div>
+                  <div className="text-center md:text-left">
                     <span>+91 7798484935</span>
                     <p className="text-xs text-brand-red font-bold mt-1">24/7 Support Available</p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3 text-white/70">
-                  <MapPin className="w-5 h-5 shrink-0 text-brand-red" />
+                <li className="flex flex-col md:flex-row items-center md:items-start gap-3 text-white/70">
+                  <MapPin className="w-5 h-5 shrink-0 text-brand-red mt-1" />
                   <span className="text-sm">
                     1) Blue berry Bulding B301, Hadapsar, Pune<br />
                     2) Behind new st stand plaus, Sangli
@@ -282,11 +282,11 @@ export default function Layout({ children }: { children: ReactNode }) {
             </div>
           </div>
 
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
             <p className="text-white/50 text-sm">
               © {new Date().getFullYear()} Brand Hunters. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm text-white/50">
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-white/50">
               <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
               <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
             </div>

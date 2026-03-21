@@ -79,33 +79,33 @@ export default function ContactForm() {
               {getDescription()}
             </p>
             
-            <div className="space-y-8">
-              <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0">
-                  <Phone className="w-6 h-6" />
+            <div className="space-y-6 md:space-y-8">
+              <div className="flex items-start md:items-center gap-4 md:gap-6 group">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0 mt-1 md:mt-0">
+                  <Phone className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <p className="text-sm text-brand-black/50 font-bold uppercase tracking-widest">Call Us</p>
-                  <p className="text-lg font-bold">+91 7798484935</p>
-                  <p className="text-xs text-brand-red font-bold mt-1">24/7 Support Available</p>
+                  <p className="text-xs md:text-sm text-brand-black/50 font-bold uppercase tracking-widest">Call Us</p>
+                  <p className="text-base md:text-lg font-bold">+91 7798484935</p>
+                  <p className="text-[10px] md:text-xs text-brand-red font-bold mt-1">24/7 Support Available</p>
                 </div>
               </div>
-              <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0">
-                  <Mail className="w-6 h-6" />
+              <div className="flex items-start md:items-center gap-4 md:gap-6 group">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0 mt-1 md:mt-0">
+                  <Mail className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
-                <div>
-                  <p className="text-sm text-brand-black/50 font-bold uppercase tracking-widest">Email Us</p>
-                  <p className="text-lg font-bold">suyashmarketing365@gmail.com</p>
+                <div className="break-all md:break-normal">
+                  <p className="text-xs md:text-sm text-brand-black/50 font-bold uppercase tracking-widest">Email Us</p>
+                  <p className="text-base md:text-lg font-bold">suyashmarketing365@gmail.com</p>
                 </div>
               </div>
-              <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0">
-                  <MapPin className="w-6 h-6" />
+              <div className="flex items-start md:items-center gap-4 md:gap-6 group">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0 mt-1 md:mt-0">
+                  <MapPin className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <p className="text-sm text-brand-black/50 font-bold uppercase tracking-widest">Visit Us</p>
-                  <p className="text-sm font-medium text-brand-black/80">
+                  <p className="text-xs md:text-sm text-brand-black/50 font-bold uppercase tracking-widest">Visit Us</p>
+                  <p className="text-xs md:text-sm font-medium text-brand-black/80">
                     1) Blue berry Bulding B301, Hadapsar, Pune<br />
                     2) Behind new st stand plaus, Sangli
                   </p>
@@ -119,7 +119,7 @@ export default function ContactForm() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-brand-black text-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative"
+            className="bg-brand-black text-white p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl relative"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-red/10 rounded-full -mr-16 -mt-16 blur-2xl" />
             <h3 className="text-2xl font-display font-bold mb-8 relative z-10">{isAcademy ? "Apply Now" : "Get Your Free Proposal"}</h3>
