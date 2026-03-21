@@ -41,7 +41,7 @@ export default function Course() {
           <img 
             src="/images/academy/classroom.png" 
             alt="Academy Background" 
-            className="w-full h-full object-cover blur-[100px] opacity-30 scale-125 saturate-150"
+            className="w-full h-full object-cover blur-xl sm:blur-2xl opacity-40 scale-105"
           />
         </div>
         

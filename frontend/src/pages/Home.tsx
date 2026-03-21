@@ -70,7 +70,7 @@ export default function Home() {
           <img 
             src="/images/agency/strategy.png" 
             alt="Agency Background" 
-            className="w-full h-full object-cover blur-[100px] opacity-40 scale-125"
+            className="w-full h-full object-cover blur-xl sm:blur-2xl opacity-30 scale-105 mix-blend-multiply"
           />
         </div>
         

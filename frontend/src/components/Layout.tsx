@@ -134,7 +134,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         }}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-           <Link to="/" className="flex items-center gap-2 md:gap-4">
+           <Link to="/" className="flex items-center gap-2 md:gap-4 -ml-2 sm:-ml-3 md:-ml-4">
             <img src="/images/logo-text.png" alt="Brand Hunters Digital Marketing Agency" className={`transition-all duration-300 w-auto ${isScrolled ? 'h-8 sm:h-12 md:h-14' : 'h-10 sm:h-14 md:h-[72px]'}`} />
             {location.pathname === '/education' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden sm:inline">| Education</span>}
             {location.pathname === '/course' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden sm:inline">| Academy</span>}
