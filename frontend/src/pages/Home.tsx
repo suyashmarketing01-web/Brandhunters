@@ -64,8 +64,18 @@ export default function Home() {
         schema={schema}
       />
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center pt-28 sm:pt-32 pb-20 overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center pt-28 sm:pt-32 pb-20 overflow-hidden bg-brand-white">
+        {/* Theme Blurred Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img 
+            src="/images/agency/strategy.png" 
+            alt="Agency Background" 
+            className="w-full h-full object-cover blur-[100px] opacity-40 scale-125"
+          />
+        </div>
+        
         <AnimatedBackground color="#C20000" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-white pointer-events-none z-0" />
         
         {/* Floating social proof */}
         <motion.div
@@ -83,7 +93,6 @@ export default function Home() {
           </div>
           <span className="text-xs font-bold text-brand-black/80">47+ businesses trust us</span>
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/80 to-white pointer-events-none" />
         
         {/* Floating Icons */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

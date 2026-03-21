@@ -36,8 +36,17 @@ export default function Course() {
     <div className="w-full overflow-hidden bg-brand-white text-brand-black">
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center pt-32 sm:pt-40 overflow-hidden bg-brand-black text-white">
-        <AnimatedBackground color="#C20000" type="grid" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/80 to-black pointer-events-none" />
+        {/* Theme Blurred Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img 
+            src="/images/academy/classroom.png" 
+            alt="Academy Background" 
+            className="w-full h-full object-cover blur-[100px] opacity-30 scale-125 saturate-150"
+          />
+        </div>
+        
+        <AnimatedBackground color="#E60000" type="grid" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black pointer-events-none z-0" />
         
         {/* Floating Icons */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

@@ -133,9 +133,18 @@ export default function CityLanding({ city }: { city: string }) {
       <SEO title={title} description={description} keywords={keywords} canonical={`/digital-marketing-agency-${city.toLowerCase()}`} schema={schema} />
       
       {/* ═══════════ HERO ═══════════ */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center pt-28 sm:pt-32 pb-20 overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center pt-28 sm:pt-32 pb-20 overflow-hidden bg-brand-white">
+        {/* Theme Blurred Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img 
+            src="/images/agency/strategy.png" 
+            alt="Agency Background" 
+            className="w-full h-full object-cover blur-[100px] opacity-40 scale-125"
+          />
+        </div>
+        
         <AnimatedBackground color="#C20000" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/70 to-white pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-white pointer-events-none z-0" />
         
         {/* Floating social proof pill */}
         <motion.div

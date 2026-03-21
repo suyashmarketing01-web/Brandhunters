@@ -50,7 +50,16 @@ export default function Education() {
   return (
     <div className="w-full overflow-hidden bg-brand-white text-brand-black" style={{ perspective: '1200px' }}>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-32 sm:pt-40 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-32 sm:pt-40 overflow-hidden bg-brand-white">
+        {/* Theme Blurred Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <img 
+            src="/images/education/strategy.png" 
+            alt="Education Background" 
+            className="w-full h-full object-cover blur-[100px] opacity-40 scale-125"
+          />
+        </div>
+        
         <AnimatedBackground color="#C20000" />
         
         {/* 3D Floating Elements */}
@@ -85,7 +94,7 @@ export default function Education() {
           ))}
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/80 to-white pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/80 to-white pointer-events-none z-0" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center lg:text-left flex flex-col lg:flex-row items-center gap-16" style={{ transformStyle: 'preserve-3d' }}>
           <div className="flex-1 flex flex-col items-center lg:items-start">
