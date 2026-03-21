@@ -5,6 +5,7 @@ import AnimatedBackground from '../components/AnimatedBackground';
 import ContactForm from '../components/ContactForm';
 import TrustBadges from '../components/TrustBadges';
 import WorkspacePhotos from '../components/WorkspacePhotos';
+import TeamShowcase from '../components/TeamShowcase';
 import { useState, useEffect, useRef } from 'react';
 
 function AnimatedCounter({ value, suffix }: { value: number, suffix: string }) {
@@ -242,6 +243,7 @@ export default function Home() {
       {/* Agency Trust Badges & Workspace Photos */}
       <TrustBadges type="agency" />
       <WorkspacePhotos type="agency" />
+      <TeamShowcase type="agency" />
 
       {/* Trust & Transparency (Moved to Top) */}
       <section className="py-24 relative overflow-hidden bg-brand-black text-white">

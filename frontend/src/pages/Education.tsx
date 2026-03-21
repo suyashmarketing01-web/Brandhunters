@@ -5,6 +5,7 @@ import AnimatedBackground from '../components/AnimatedBackground';
 import ContactForm from '../components/ContactForm';
 import TrustBadges from '../components/TrustBadges';
 import WorkspacePhotos from '../components/WorkspacePhotos';
+import TeamShowcase from '../components/TeamShowcase';
 import { useRef } from 'react';
 
 export default function Education() {
@@ -224,6 +225,7 @@ export default function Education() {
       {/* Education Trust Badges & Workspace Photos */}
       <TrustBadges type="education" />
       <WorkspacePhotos type="education" />
+      <TeamShowcase type="education" />
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-brand-gray relative">

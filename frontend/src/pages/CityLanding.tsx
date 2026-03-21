@@ -5,6 +5,7 @@ import AnimatedBackground from '../components/AnimatedBackground';
 import ContactForm from '../components/ContactForm';
 import TrustBadges from '../components/TrustBadges';
 import WorkspacePhotos from '../components/WorkspacePhotos';
+import TeamShowcase from '../components/TeamShowcase';
 import SEO from '../components/SEO';
 import { useState, useEffect, useRef } from 'react';
 
@@ -276,6 +277,7 @@ export default function CityLanding({ city }: { city: string }) {
       {/* Agency Trust Badges & Workspace Photos */}
       <TrustBadges type="agency" />
       <WorkspacePhotos type="agency" />
+      <TeamShowcase type="agency" />
 
       {/* ═══════════ SERVICES ═══════════ */}
       <section id="services" className="py-24 bg-brand-gray relative">
