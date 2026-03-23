@@ -139,7 +139,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             <img 
               src="/images/logo-icon.png" 
               alt="Brand Hunters" 
-              className={`transition-all duration-300 w-auto ${isScrolled ? 'h-8 sm:h-9 md:h-10' : 'h-9 sm:h-10 md:h-12'}`} 
+              className={`transition-all duration-300 w-auto ${isScrolled ? 'h-9 sm:h-10 md:h-11' : 'h-11 sm:h-12 md:h-14'}`} 
             />
             {/* Text logo - hidden on very small mobile, visible on sm+ */}
             <img 
