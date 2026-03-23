@@ -134,10 +134,21 @@ export default function Layout({ children }: { children: ReactNode }) {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-           <Link to="/" className="flex items-center gap-2 md:gap-3 shrink-0">
-            <img src="/images/logo-text.png" alt="Brand Hunters Digital Marketing Agency" className={`transition-all duration-300 w-auto ${isScrolled ? 'h-10 sm:h-12 md:h-16' : 'h-14 sm:h-16 md:h-20'}`} />
-            {location.pathname === '/education' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden sm:inline">| Education</span>}
-            {location.pathname === '/course' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden sm:inline">| Academy</span>}
+           <Link to="/" className="flex items-center gap-1.5 sm:gap-2 md:gap-3 shrink-0">
+            {/* Icon logo - always visible, scales with scroll */}
+            <img 
+              src="/images/logo-icon.png" 
+              alt="Brand Hunters" 
+              className={`transition-all duration-300 w-auto ${isScrolled ? 'h-8 sm:h-9 md:h-10' : 'h-9 sm:h-10 md:h-12'}`} 
+            />
+            {/* Text logo - hidden on very small mobile, visible on sm+ */}
+            <img 
+              src="/images/logo-text.png" 
+              alt="Brand Hunters Digital Marketing Agency" 
+              className={`transition-all duration-300 w-auto hidden sm:block ${isScrolled ? 'h-8 sm:h-10 md:h-14' : 'h-10 sm:h-12 md:h-16'}`} 
+            />
+            {location.pathname === '/education' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden md:inline">| Education</span>}
+            {location.pathname === '/course' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden md:inline">| Academy</span>}
           </Link>
 
           {/* Desktop Nav */}
@@ -221,8 +232,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8 mb-16 text-center md:text-left">
             <div className="col-span-1 md:col-span-2 flex flex-col items-center md:items-start">
               <Link to="/" className="flex items-center justify-center md:justify-start gap-2 mb-4">
-                <div className="bg-white rounded-2xl p-3 inline-block">
-                  <img src="/images/logo-full.png" alt="Brand Hunters Digital Marketing Agency" className="h-16 md:h-20 w-auto" />
+                <div className="bg-white rounded-2xl p-4 inline-block shadow-lg">
+                  <img src="/images/logo-full.png" alt="Brand Hunters Digital Marketing Agency" className="h-20 md:h-24 w-auto" />
                 </div>
               </Link>
               <p className="text-brand-red font-medium text-sm mb-6 tracking-wide uppercase">We believe in results, not plans.</p>
