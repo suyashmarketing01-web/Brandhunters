@@ -90,42 +90,96 @@ export default function SplashScreen() {
             </div>
 
             {/* Hands Animation */}
-            <div className="relative z-10 flex items-center justify-center h-36 w-36 sm:h-48 sm:w-48 mt-8 sm:mt-12">
+            <div className="relative z-10 flex items-center justify-center h-40 w-40 sm:h-52 sm:w-52 mt-6 sm:mt-10">
               {/* Left Hand */}
               <motion.div
-                initial={{ x: -60, y: 40, opacity: 0, rotate: -45 }}
+                initial={{ x: -80, y: 30, opacity: 0, rotate: -30 }}
                 animate={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute right-1/2 origin-bottom-right"
+                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute right-1/2 origin-bottom-right mr-[-1px]"
               >
-                <svg width="50" height="130" viewBox="0 0 60 150" fill="none" xmlns="http://www.w3.org/2000/svg" className="scale-x-[-1] sm:w-[60px] sm:h-[150px]">
-                  <path d="M 0 0 L 0 90 C 5 100, 25 120, 40 150 L 60 140 C 40 100, 15 40, 0 0 Z" fill="#FFF5E1" stroke="#4A0E0E" strokeWidth="1.5"/>
-                  <path d="M 0 0 L 0 30 C 5 20, 8 10, 0 0 Z" fill="#C20000"/>
-                  <circle cx="12" cy="80" r="10" fill="#C20000"/>
-                  <circle cx="12" cy="80" r="14" stroke="#C20000" strokeWidth="1" strokeDasharray="2 2" fill="none"/>
-                  <path d="M 28 125 L 48 115" stroke="#C20000" strokeWidth="8" strokeLinecap="round"/>
-                  <path d="M 32 135 L 52 125" stroke="#F4A261" strokeWidth="4" strokeLinecap="round"/>
-                  <path d="M 24 115 L 44 105" stroke="#C20000" strokeWidth="4" strokeLinecap="round"/>
-                  <path d="M 0 50 C 5 55, 8 65, 0 70" stroke="#4A0E0E" strokeWidth="1" fill="none"/>
+                <svg width="52" height="135" viewBox="0 0 70 180" fill="none" className="scale-x-[-1] sm:w-[62px] sm:h-[160px]">
+                  <defs>
+                    <linearGradient id="sL" x1="0" y1="0" x2="0.8" y2="1">
+                      <stop offset="0%" stopColor="#FDDCB5"/>
+                      <stop offset="100%" stopColor="#EDBA8B"/>
+                    </linearGradient>
+                  </defs>
+                  {/* Fingers joined together pointing up */}
+                  <path d="M 22 8 C 22 4, 26 2, 28 6 L 28 52" stroke="#D4A574" strokeWidth="0.8" fill="url(#sL)"/>
+                  <path d="M 28 6 C 28 2, 32 0, 34 4 L 34 50" stroke="#D4A574" strokeWidth="0.8" fill="url(#sL)"/>
+                  <path d="M 34 4 C 34 0, 38 0, 40 5 L 40 48" stroke="#D4A574" strokeWidth="0.8" fill="url(#sL)"/>
+                  <path d="M 40 5 C 40 2, 44 3, 45 8 L 45 46" stroke="#D4A574" strokeWidth="0.8" fill="url(#sL)"/>
+                  {/* Palm body */}
+                  <path d="M 20 52 C 18 52, 16 54, 16 58 L 16 90 C 16 100, 20 108, 26 114 L 30 118 C 24 124, 20 132, 18 142 L 16 155 C 15 162, 18 168, 24 170 L 48 170 C 54 168, 56 162, 55 155 L 52 140 C 50 132, 46 124, 42 118 L 46 114 C 52 108, 56 100, 56 90 L 56 58 C 56 54, 54 52, 52 52 Z" fill="url(#sL)" stroke="#D4A574" strokeWidth="1"/>
+                  {/* Thumb */}
+                  <path d="M 16 62 C 10 58, 6 52, 8 46 C 10 40, 14 42, 16 50" fill="url(#sL)" stroke="#D4A574" strokeWidth="1"/>
+                  {/* Finger joint lines */}
+                  <line x1="28" y1="50" x2="28" y2="56" stroke="#D4A574" strokeWidth="0.5" opacity="0.4"/>
+                  <line x1="34" y1="48" x2="34" y2="56" stroke="#D4A574" strokeWidth="0.5" opacity="0.4"/>
+                  <line x1="40" y1="46" x2="40" y2="56" stroke="#D4A574" strokeWidth="0.5" opacity="0.4"/>
+                  <line x1="45" y1="46" x2="45" y2="56" stroke="#D4A574" strokeWidth="0.5" opacity="0.4"/>
+                  {/* Palm creases */}
+                  <path d="M 20 75 C 30 70, 42 68, 52 72" stroke="#D4A574" strokeWidth="0.5" opacity="0.25" fill="none"/>
+                  <path d="M 20 85 C 30 82, 44 80, 52 84" stroke="#D4A574" strokeWidth="0.5" opacity="0.25" fill="none"/>
+                  {/* Red alta on fingertips */}
+                  <ellipse cx="25" cy="8" rx="4" ry="5" fill="#C20000" opacity="0.35"/>
+                  <ellipse cx="31" cy="4" rx="4" ry="4" fill="#C20000" opacity="0.35"/>
+                  <ellipse cx="37" cy="3" rx="4" ry="4" fill="#C20000" opacity="0.35"/>
+                  <ellipse cx="43" cy="7" rx="3.5" ry="4" fill="#C20000" opacity="0.35"/>
+                  {/* Mehndi dot pattern on palm */}
+                  <circle cx="36" cy="78" r="6" fill="#C20000" opacity="0.12"/>
+                  <circle cx="36" cy="78" r="9" stroke="#C20000" strokeWidth="0.5" opacity="0.1" fill="none" strokeDasharray="2 2"/>
+                  {/* Bangles at wrist */}
+                  <rect x="14" y="152" width="44" height="5" rx="2.5" fill="#C20000" opacity="0.85"/>
+                  <rect x="16" y="159" width="40" height="3.5" rx="1.75" fill="#F4A261" opacity="0.9"/>
+                  <rect x="14" y="164" width="44" height="4.5" rx="2.25" fill="#C20000" opacity="0.7"/>
                 </svg>
               </motion.div>
 
               {/* Right Hand */}
               <motion.div
-                initial={{ x: 60, y: 40, opacity: 0, rotate: 45 }}
+                initial={{ x: 80, y: 30, opacity: 0, rotate: 30 }}
                 animate={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute left-1/2 origin-bottom-left"
+                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute left-1/2 origin-bottom-left ml-[-1px]"
               >
-                <svg width="50" height="130" viewBox="0 0 60 150" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-[60px] sm:h-[150px]">
-                  <path d="M 0 0 L 0 90 C 5 100, 25 120, 40 150 L 60 140 C 40 100, 15 40, 0 0 Z" fill="#FFF5E1" stroke="#4A0E0E" strokeWidth="1.5"/>
-                  <path d="M 0 0 L 0 30 C 5 20, 8 10, 0 0 Z" fill="#C20000"/>
-                  <circle cx="12" cy="80" r="10" fill="#C20000"/>
-                  <circle cx="12" cy="80" r="14" stroke="#C20000" strokeWidth="1" strokeDasharray="2 2" fill="none"/>
-                  <path d="M 28 125 L 48 115" stroke="#C20000" strokeWidth="8" strokeLinecap="round"/>
-                  <path d="M 32 135 L 52 125" stroke="#F4A261" strokeWidth="4" strokeLinecap="round"/>
-                  <path d="M 24 115 L 44 105" stroke="#C20000" strokeWidth="4" strokeLinecap="round"/>
-                  <path d="M 0 50 C 5 55, 8 65, 0 70" stroke="#4A0E0E" strokeWidth="1" fill="none"/>
+                <svg width="52" height="135" viewBox="0 0 70 180" fill="none" className="sm:w-[62px] sm:h-[160px]">
+                  <defs>
+                    <linearGradient id="sR" x1="0" y1="0" x2="0.8" y2="1">
+                      <stop offset="0%" stopColor="#FDDCB5"/>
+                      <stop offset="100%" stopColor="#EDBA8B"/>
+                    </linearGradient>
+                  </defs>
+                  {/* Fingers joined together pointing up */}
+                  <path d="M 22 8 C 22 4, 26 2, 28 6 L 28 52" stroke="#D4A574" strokeWidth="0.8" fill="url(#sR)"/>
+                  <path d="M 28 6 C 28 2, 32 0, 34 4 L 34 50" stroke="#D4A574" strokeWidth="0.8" fill="url(#sR)"/>
+                  <path d="M 34 4 C 34 0, 38 0, 40 5 L 40 48" stroke="#D4A574" strokeWidth="0.8" fill="url(#sR)"/>
+                  <path d="M 40 5 C 40 2, 44 3, 45 8 L 45 46" stroke="#D4A574" strokeWidth="0.8" fill="url(#sR)"/>
+                  {/* Palm body */}
+                  <path d="M 20 52 C 18 52, 16 54, 16 58 L 16 90 C 16 100, 20 108, 26 114 L 30 118 C 24 124, 20 132, 18 142 L 16 155 C 15 162, 18 168, 24 170 L 48 170 C 54 168, 56 162, 55 155 L 52 140 C 50 132, 46 124, 42 118 L 46 114 C 52 108, 56 100, 56 90 L 56 58 C 56 54, 54 52, 52 52 Z" fill="url(#sR)" stroke="#D4A574" strokeWidth="1"/>
+                  {/* Thumb */}
+                  <path d="M 56 62 C 62 58, 66 52, 64 46 C 62 40, 58 42, 56 50" fill="url(#sR)" stroke="#D4A574" strokeWidth="1"/>
+                  {/* Finger joint lines */}
+                  <line x1="28" y1="50" x2="28" y2="56" stroke="#D4A574" strokeWidth="0.5" opacity="0.4"/>
+                  <line x1="34" y1="48" x2="34" y2="56" stroke="#D4A574" strokeWidth="0.5" opacity="0.4"/>
+                  <line x1="40" y1="46" x2="40" y2="56" stroke="#D4A574" strokeWidth="0.5" opacity="0.4"/>
+                  <line x1="45" y1="46" x2="45" y2="56" stroke="#D4A574" strokeWidth="0.5" opacity="0.4"/>
+                  {/* Palm creases */}
+                  <path d="M 20 75 C 30 70, 42 68, 52 72" stroke="#D4A574" strokeWidth="0.5" opacity="0.25" fill="none"/>
+                  <path d="M 20 85 C 30 82, 44 80, 52 84" stroke="#D4A574" strokeWidth="0.5" opacity="0.25" fill="none"/>
+                  {/* Red alta on fingertips */}
+                  <ellipse cx="25" cy="8" rx="4" ry="5" fill="#C20000" opacity="0.35"/>
+                  <ellipse cx="31" cy="4" rx="4" ry="4" fill="#C20000" opacity="0.35"/>
+                  <ellipse cx="37" cy="3" rx="4" ry="4" fill="#C20000" opacity="0.35"/>
+                  <ellipse cx="43" cy="7" rx="3.5" ry="4" fill="#C20000" opacity="0.35"/>
+                  {/* Mehndi dot pattern on palm */}
+                  <circle cx="36" cy="78" r="6" fill="#C20000" opacity="0.12"/>
+                  <circle cx="36" cy="78" r="9" stroke="#C20000" strokeWidth="0.5" opacity="0.1" fill="none" strokeDasharray="2 2"/>
+                  {/* Bangles at wrist */}
+                  <rect x="14" y="152" width="44" height="5" rx="2.5" fill="#C20000" opacity="0.85"/>
+                  <rect x="16" y="159" width="40" height="3.5" rx="1.75" fill="#F4A261" opacity="0.9"/>
+                  <rect x="14" y="164" width="44" height="4.5" rx="2.25" fill="#C20000" opacity="0.7"/>
                 </svg>
               </motion.div>
             </div>
