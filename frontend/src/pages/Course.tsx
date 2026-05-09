@@ -35,129 +35,148 @@ export default function Course() {
   return (
     <div className="w-full overflow-hidden bg-brand-white text-brand-black">
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center pt-32 sm:pt-40 overflow-hidden bg-brand-black text-white">
+      <section id="hero" className="relative min-h-screen flex items-center pt-32 sm:pt-40 pb-16 overflow-hidden bg-brand-black text-white">
         {/* Theme Blurred Background */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <img 
             src="/images/academy/classroom.png" 
             alt="Academy Background" 
-            className="w-full h-full object-cover blur-sm opacity-40 scale-110"
+            className="w-full h-full object-cover blur-sm opacity-30 scale-110"
           />
         </div>
         
         <AnimatedBackground color="#E60000" type="grid" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90 pointer-events-none z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black pointer-events-none z-[1]" />
         
-        {/* Floating Icons */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <motion.div
-            animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/4 left-[10%] text-white/10"
-          >
-            <FaGoogle size={64} />
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, 25, 0], rotate: [0, -10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-1/3 right-[15%] text-white/10"
-          >
-            <FaMeta size={72} />
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, -15, 0], rotate: [0, 8, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute bottom-1/3 left-[15%] text-white/10"
-          >
-            <FaChartLine size={56} />
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute bottom-1/4 right-[20%] text-white/10"
-          >
-            <FaCode size={60} />
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, -25, 0], rotate: [0, 15, 0] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-            className="absolute top-1/2 left-[5%] text-white/10 hidden md:block"
-          >
-            <FaRobot size={50} />
-          </motion.div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center lg:text-left flex flex-col lg:flex-row items-center gap-16">
-          <div className="flex-1 flex flex-col items-center lg:items-start">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+            {/* Urgency Badge */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white/80 mb-8 backdrop-blur-sm"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-6 px-4 py-2 rounded-full bg-brand-red/20 border border-brand-red/30 flex items-center gap-2 text-sm font-bold text-brand-red backdrop-blur-sm"
             >
-              <GraduationCap className="w-4 h-4 text-brand-red" />
-              <span>Brand Hunters Academy • We believe in results, not plans.</span>
+              <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse" />
+              Next Batch Starting Soon — Limited Seats
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[1.1] mb-6 sm:mb-8"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tighter leading-[1.05] mb-6"
             >
-              Master Digital Marketing & AI.<br />
-              <span className="text-brand-red">
-                Placement Guaranteed.
-              </span>
+              Learn. Build.{' '}<br />
+              <span className="text-brand-red">Get Placed.</span>
             </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mb-10 sm:mb-12 px-4 sm:px-0"
-          >
-            The digital marketing industry is booming, but theory isn't enough. Learn hands-on skills, master AI tools, and secure your career with our dedicated placement support.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-lg text-white/70 max-w-lg mb-8 leading-relaxed"
+            >
+              3-month hands-on digital marketing course with <strong className="text-white">100% placement assistance</strong> and live campaign experience. Pay 50% only after you get placed.
+            </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0"
-          >
-            <a href="#contact" className="w-full sm:w-auto group relative inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 bg-brand-red border border-transparent rounded-full hover:bg-brand-red-hover hover:shadow-[0_0_30px_rgba(194,0,0,0.4)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-red focus:ring-offset-black">
-              Join Our Next Batch
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a href="#contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-300 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/20 focus:ring-offset-black">
-              Download Syllabus
-            </a>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+            >
+              <a href="#contact" className="group inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white bg-brand-red rounded-full hover:bg-brand-red-hover hover:shadow-[0_0_30px_rgba(194,0,0,0.4)] transition-all">
+                Apply Now — Free Consultation
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </motion.div>
 
+            {/* Trust Row */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="mt-8 flex flex-wrap justify-center lg:justify-start items-center gap-4 text-sm text-white/50 font-medium"
+            >
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-red" /> 100% Placement Support</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-red" /> Live Campaigns</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-red" /> AI Tools Training</span>
+            </motion.div>
+          </div>
+
+          {/* Hero Image */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-            className="mt-12 p-[1px] rounded-2xl bg-gradient-to-r from-brand-red/50 via-brand-red to-brand-red/50 max-w-3xl w-full"
+            initial={{ opacity: 0, x: 60, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            className="flex-1 relative w-full max-w-xl lg:max-w-none"
           >
-            <div className="bg-brand-black rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div className="text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/20 text-brand-red text-xs font-bold mb-3 uppercase tracking-wider">
-                  Special Payment Plan
-                </div>
-                <h3 className="text-2xl font-display font-bold text-white mb-2">Pay 50% After Placement</h3>
-                <p className="text-white/80">Start your classes today with an initial payment of just <strong className="text-brand-red text-xl">₹15,000</strong>.</p>
-              </div>
-              <div className="shrink-0 w-full sm:w-auto">
-                 <a href="#contact" className="inline-block text-center w-full sm:w-auto px-8 py-4 bg-brand-red text-white font-bold rounded-xl hover:bg-brand-red-hover transition-colors shadow-[0_0_20px_rgba(194,0,0,0.3)]">
-                   Claim Offer
-                 </a>
-              </div>
+            <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.5)] border-2 border-white/10">
+              <img
+                src="/images/academy/training-session.png"
+                alt="Brand Hunters Academy students in a live training session"
+                className="w-full h-full object-cover"
+              />
             </div>
+            {/* Floating Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="absolute -bottom-5 -left-5 md:-left-8 bg-white rounded-2xl shadow-2xl p-4 border border-black/5"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-brand-red/10 flex items-center justify-center">
+                  <Users className="w-5 h-5 text-brand-red" />
+                </div>
+                <div>
+                  <p className="text-xl font-display font-bold text-brand-black">{students}+</p>
+                  <p className="text-[10px] text-brand-black/50 font-medium uppercase tracking-wide">Students Trained</p>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+              className="absolute -top-4 -right-4 md:-right-6 bg-brand-red text-white rounded-2xl shadow-2xl px-4 py-2.5"
+            >
+              <p className="text-sm font-bold">92% Placed</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.4 }}
+              className="absolute top-1/2 -right-3 md:-right-6 bg-white text-brand-black rounded-xl shadow-xl px-3 py-2 border border-black/5"
+            >
+              <p className="text-xs font-bold flex items-center gap-1"><Star className="w-3 h-3 text-[#FBBC05] fill-current" /> 4.9 Rating</p>
+            </motion.div>
           </motion.div>
         </div>
-      </div>
+      </section>
+
+      {/* Payment Offer Banner */}
+      <section className="relative z-20 -mt-8 px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto p-[1px] rounded-2xl bg-gradient-to-r from-brand-red/50 via-brand-red to-brand-red/50"
+        >
+          <div className="bg-brand-black rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="text-center sm:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/20 text-brand-red text-xs font-bold mb-3 uppercase tracking-wider">
+                <Sparkles className="w-3 h-3" /> Special Payment Plan
+              </div>
+              <h3 className="text-2xl font-display font-bold text-white mb-1">Pay 50% After Placement</h3>
+              <p className="text-white/70 text-sm">Start classes with just <strong className="text-brand-red text-lg">₹15,000</strong> upfront.</p>
+            </div>
+            <a href="#contact" className="shrink-0 px-8 py-4 bg-brand-red text-white font-bold rounded-xl hover:bg-brand-red-hover transition-colors shadow-[0_0_20px_rgba(194,0,0,0.3)]">
+              Claim Offer
+            </a>
+          </div>
+        </motion.div>
       </section>
 
       {/* Stats Section */}
@@ -273,29 +292,84 @@ export default function Course() {
             </div>
           </motion.div>
 
-          {/* Student Achievement Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            {[
-              { icon: Trophy, stat: '92%', label: 'Placement Rate', detail: 'Within 3 months of course completion' },
-              { icon: Briefcase, stat: '4.2 LPA', label: 'Average Package', detail: 'For freshers with no prior experience' },
-              { icon: Award, stat: '15+', label: 'Awards Won', detail: 'By our students in marketing competitions' },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.15 }}
-                className="p-6 sm:p-8 rounded-2xl bg-brand-gray border border-black/5 hover:border-brand-red/30 hover:shadow-xl transition-all group text-center"
-              >
-                <div className="w-14 h-14 rounded-full bg-brand-red/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-red group-hover:text-white transition-colors">
-                  <item.icon className="w-7 h-7 text-brand-red group-hover:text-white transition-colors" />
+          {/* Career Transformation Visual */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            {/* Before/After Salary */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-6 sm:p-8 rounded-2xl bg-brand-black text-white relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-brand-red/20 blur-3xl rounded-full" />
+              <h3 className="text-xl font-display font-bold mb-6 relative z-10">Your Career Transformation</h3>
+              <div className="space-y-6 relative z-10">
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-white/60">Before Academy</span>
+                    <span className="text-white/40 font-mono">₹0 - ₹1.8 LPA</span>
+                  </div>
+                  <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-full bg-white/20 w-[20%] rounded-full" />
+                  </div>
                 </div>
-                <div className="text-3xl font-display font-bold text-brand-red mb-1">{item.stat}</div>
-                <div className="text-base font-bold mb-1">{item.label}</div>
-                <div className="text-sm text-brand-black/60">{item.detail}</div>
-              </motion.div>
-            ))}
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span className="text-white font-medium">After Academy</span>
+                    <span className="text-brand-red font-mono font-bold">₹3.5 - ₹6 LPA</span>
+                  </div>
+                  <div className="h-3 bg-white/10 rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '80%' }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.5, ease: "easeOut" }}
+                      className="h-full bg-gradient-to-r from-brand-red to-red-400 rounded-full"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 pt-6 border-t border-white/10 grid grid-cols-3 gap-4 text-center relative z-10">
+                <div>
+                  <p className="text-2xl font-display font-bold text-brand-red">92%</p>
+                  <p className="text-[10px] text-white/50 uppercase tracking-wide">Placed</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-display font-bold text-brand-red">4.2L</p>
+                  <p className="text-[10px] text-white/50 uppercase tracking-wide">Avg CTC</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-display font-bold text-brand-red">3mo</p>
+                  <p className="text-[10px] text-white/50 uppercase tracking-wide">Avg Time</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Achievement Cards Stack */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { icon: Trophy, stat: '92%', label: 'Placement Rate', detail: 'Within 3 months' },
+                { icon: Briefcase, stat: '4.2 LPA', label: 'Avg Package', detail: 'For freshers' },
+                { icon: Award, stat: '15+', label: 'Awards Won', detail: 'In competitions' },
+                { icon: Users, stat: '120+', label: 'Hiring Partners', detail: 'Across India' },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  className="p-5 rounded-2xl bg-brand-gray border border-black/5 hover:border-brand-red/30 hover:shadow-lg transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-full bg-brand-red/10 flex items-center justify-center mb-3 group-hover:bg-brand-red group-hover:text-white transition-colors">
+                    <item.icon className="w-5 h-5 text-brand-red group-hover:text-white transition-colors" />
+                  </div>
+                  <div className="text-2xl font-display font-bold text-brand-red mb-0.5">{item.stat}</div>
+                  <div className="text-sm font-bold">{item.label}</div>
+                  <div className="text-xs text-brand-black/50">{item.detail}</div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -353,6 +427,79 @@ export default function Course() {
                 <p className="text-brand-black/60 text-sm leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Life at Academy - Visual Grid */}
+      <section className="py-16 sm:py-20 bg-brand-gray relative overflow-hidden border-b border-black/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 text-brand-red text-sm font-bold mb-4">
+              <Camera className="w-4 h-4" /> Life at Academy
+            </div>
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4">Experience the Energy</h2>
+            <p className="text-brand-black/70 max-w-xl mx-auto">Real classrooms. Real campaigns. Real students building real careers.</p>
+          </motion.div>
+          
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            {/* Large main photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden group cursor-pointer"
+            >
+              <img 
+                src="/images/academy/students-group.png" 
+                alt="Students at Brand Hunters Academy" 
+                className="w-full h-full min-h-[280px] sm:min-h-[400px] object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
+                <p className="text-white text-lg sm:text-2xl font-display font-bold">Batch 2025 — Graduation Ceremony</p>
+                <p className="text-white/70 text-xs sm:text-sm mt-1">500+ alumni and counting!</p>
+              </div>
+            </motion.div>
+            
+            {/* Training Session */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="relative rounded-2xl overflow-hidden group cursor-pointer"
+            >
+              <img 
+                src="/images/academy/training-session.png" 
+                alt="Live training session" 
+                className="w-full h-full min-h-[130px] sm:min-h-[190px] object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <p className="absolute bottom-3 left-3 text-white text-xs sm:text-sm font-bold">Live Training</p>
+            </motion.div>
+            
+            {/* Classroom */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="relative rounded-2xl overflow-hidden group cursor-pointer"
+            >
+              <img 
+                src="/images/academy/classroom.png" 
+                alt="Academy classroom" 
+                className="w-full h-full min-h-[130px] sm:min-h-[190px] object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <p className="absolute bottom-3 left-3 text-white text-xs sm:text-sm font-bold">Our Classroom</p>
+            </motion.div>
           </div>
         </div>
       </section>
