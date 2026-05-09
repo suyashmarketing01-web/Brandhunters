@@ -96,81 +96,105 @@ export default function RealEstate() {
 
         <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/60 to-white pointer-events-none z-[1]" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center lg:text-left flex flex-col lg:flex-row items-center gap-16" style={{ transformStyle: 'preserve-3d' }}>
-          <div className="flex-1 flex flex-col items-center lg:items-start">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-16" style={{ transformStyle: 'preserve-3d' }}>
+          <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.div
-              initial={{ opacity: 0, y: -50, z: 100, rotateX: -45 }}
-              animate={{ opacity: 1, y: 0, z: 0, rotateX: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="mb-8 inline-block"
-            >
-              <div className="px-6 py-3 rounded-2xl bg-brand-red text-white shadow-[0_20px_50px_rgba(194,0,0,0.3)] flex items-center gap-3 animate-pulse">
-                <span className="font-bold tracking-tight">Risk-Free Start: First take a 15-Day Free Trial. Pay only after you see the work and results.</span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20, z: 50 }}
-              animate={{ opacity: 1, y: 0, z: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 border border-brand-red/20 text-brand-red text-sm font-bold mb-8 uppercase tracking-wider"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 border border-brand-red/20 text-brand-red text-sm font-bold mb-6 uppercase tracking-wider"
             >
               <Building2 className="w-4 h-4" />
-              Marketing for Real Estate Builders & Agents
+              Real Estate Marketing
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 50, z: 200, rotateX: 20 }}
-              animate={{ opacity: 1, y: 0, z: 0, rotateX: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: "backOut" }}
-              className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter leading-[1] mb-6 sm:mb-8"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tighter leading-[1.05] mb-6"
             >
               Sell Properties{' '}<br />
-              <span className="text-brand-red relative">
-                Faster & Smarter
-                <motion.span
-                  className="absolute -bottom-2 left-0 w-full h-2 bg-brand-red/20 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1, duration: 0.8 }}
-                />
-              </span>
+              <span className="text-brand-red">Faster.</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-lg md:text-xl text-brand-black/70 max-w-2xl mb-12 leading-relaxed"
+              className="text-lg text-brand-black/70 max-w-lg mb-8 leading-relaxed"
             >
-              We help Builders, Developers & Real Estate Agents generate qualified property leads 
-              through performance marketing, social media, and SEO — across Mumbai & Pune.
+              Performance marketing for Builders & Agents. Qualified leads, site visits, and closures — across Pune & Mumbai.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 30, z: 100 }}
-              animate={{ opacity: 1, y: 0, z: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-6"
+              className="flex flex-col sm:flex-row gap-4"
             >
               <motion.a
                 href="#contact"
-                whileHover={{ scale: 1.05, translateZ: 20 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-brand-red text-white rounded-2xl font-bold text-xl hover:bg-brand-red-hover transition-all shadow-[0_20px_40px_rgba(194,0,0,0.2)] flex items-center justify-center gap-3"
+                className="px-8 py-4 bg-brand-red text-white rounded-2xl font-bold text-lg hover:bg-brand-red-hover transition-all shadow-[0_20px_40px_rgba(194,0,0,0.2)] flex items-center justify-center gap-3"
               >
-                Get Property Leads <ArrowRight className="w-6 h-6" />
-              </motion.a>
-              <motion.a
-                href="#services"
-                whileHover={{ scale: 1.05, translateZ: 20 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-white text-brand-black border border-black/10 rounded-2xl font-bold text-xl hover:bg-black/5 transition-all flex items-center justify-center gap-3"
-              >
-                Explore Services
+                Get Property Leads <ArrowRight className="w-5 h-5" />
               </motion.a>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="mt-8 flex items-center gap-6 text-sm text-brand-black/50 font-medium"
+            >
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-red" /> 15-Day Free Trial</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-brand-red" /> Pay After Results</span>
+            </motion.div>
           </div>
+
+          {/* Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 60, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            className="flex-1 relative w-full max-w-xl lg:max-w-none"
+          >
+            <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.15)] border-4 border-white/80">
+              <img
+                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=1200"
+                alt="Modern real estate property"
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            {/* Floating Stats Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="absolute -bottom-6 -left-6 md:-left-10 bg-white rounded-2xl shadow-2xl p-5 border border-black/5"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-brand-red/10 flex items-center justify-center">
+                  <TrendingUp className="w-6 h-6 text-brand-red" />
+                </div>
+                <div>
+                  <p className="text-2xl font-display font-bold text-brand-black">200+</p>
+                  <p className="text-xs text-brand-black/50 font-medium">Properties Sold</p>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+              className="absolute -top-4 -right-4 md:-right-8 bg-brand-red text-white rounded-2xl shadow-2xl px-5 py-3"
+            >
+              <p className="text-sm font-bold">3x Avg. ROI</p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
