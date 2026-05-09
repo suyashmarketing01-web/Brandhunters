@@ -164,7 +164,7 @@ export default function Education() {
           >
             <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.15)] border-4 border-white/80">
               <img
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1200"
+                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1200"
                 alt="University campus students"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -362,7 +362,7 @@ export default function Education() {
             >
               <div className="aspect-square rounded-[3rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.1)] border-8 border-white">
                 <img 
-                  src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=1000" 
+                  src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1000" 
                   alt="Students on campus" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
