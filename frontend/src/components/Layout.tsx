@@ -352,21 +352,19 @@ export default function Layout({ children }: { children: ReactNode }) {
         </div>
       </footer>
 
-      {/* Floating Action Buttons */}
-      <div className="fixed bottom-4 right-3 md:bottom-6 md:right-6 z-[100] flex flex-col gap-2 md:gap-3 items-end">
-        {/* Support Badge - hidden on mobile */}
+      {/* Floating Action Buttons — Desktop: stacked right side, Mobile: horizontal bottom bar */}
+      {/* Desktop Floating Buttons */}
+      <div className="hidden md:flex fixed bottom-6 right-6 z-[100] flex-col gap-3 items-end">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="hidden md:block bg-white/90 backdrop-blur-sm border border-brand-red/20 px-3 py-1 rounded-full shadow-lg mb-1"
+          className="bg-white/90 backdrop-blur-sm border border-brand-red/20 px-3 py-1 rounded-full shadow-lg mb-1"
         >
           <p className="text-[10px] font-bold text-brand-red uppercase tracking-tighter flex items-center gap-1">
             <span className="w-1.5 h-1.5 bg-brand-red rounded-full animate-pulse" />
             24/7 Support Team Online
           </p>
         </motion.div>
-
-        {/* WhatsApp Button */}
         <motion.a
           href="https://wa.me/917798484935"
           target="_blank"
@@ -374,38 +372,67 @@ export default function Layout({ children }: { children: ReactNode }) {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           whileHover={{ scale: 1.05, x: -5 }}
-          className="bg-[#25D366] text-white p-2.5 md:px-5 md:py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all"
+          className="bg-[#25D366] text-white px-5 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all"
         >
-          <FaWhatsapp size={20} className="md:w-6 md:h-6" />
-          <span className="hidden md:inline max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">WhatsApp Now</span>
+          <FaWhatsapp className="w-6 h-6" />
+          <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">WhatsApp Now</span>
         </motion.a>
-
-        {/* Call Button */}
         <motion.a
           href="tel:+917798484935"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
           whileHover={{ scale: 1.05, x: -5 }}
-          className="bg-brand-black text-white p-2.5 md:px-5 md:py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all border border-white/10"
+          className="bg-brand-black text-white px-5 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all border border-white/10"
         >
           <Phone className="w-5 h-5" />
-          <span className="hidden md:inline max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">Call Now</span>
+          <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">Call Now</span>
         </motion.a>
-
-        {/* Enquire Button */}
         <motion.a
           href="#contact"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
           whileHover={{ scale: 1.05, x: -5 }}
-          className="bg-brand-red text-white p-2.5 md:px-5 md:py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all"
+          className="bg-brand-red text-white px-5 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all"
         >
           <Mail className="w-5 h-5" />
-          <span className="hidden md:inline max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap text-sm">Enquire Now</span>
+          <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap text-sm">Enquire Now</span>
         </motion.a>
       </div>
+
+      {/* Mobile Bottom Action Bar */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-brand-black/95 backdrop-blur-md border-t border-white/10 px-2 py-2 safe-bottom"
+      >
+        <div className="flex items-center justify-around gap-1">
+          <a
+            href="https://wa.me/917798484935"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-0.5 text-[#25D366] active:scale-95 transition-transform flex-1"
+          >
+            <FaWhatsapp className="w-5 h-5" />
+            <span className="text-[9px] font-bold uppercase tracking-wide">WhatsApp</span>
+          </a>
+          <a
+            href="tel:+917798484935"
+            className="flex flex-col items-center gap-0.5 text-white active:scale-95 transition-transform flex-1"
+          >
+            <Phone className="w-5 h-5" />
+            <span className="text-[9px] font-bold uppercase tracking-wide">Call Now</span>
+          </a>
+          <a
+            href="#contact"
+            className="flex items-center justify-center gap-1.5 bg-brand-red text-white px-4 py-2 rounded-full font-bold text-xs shadow-lg active:scale-95 transition-transform flex-1 max-w-[140px]"
+          >
+            <Mail className="w-4 h-4" />
+            Get Quote
+          </a>
+        </div>
+      </motion.div>
     </div>
   );
 }

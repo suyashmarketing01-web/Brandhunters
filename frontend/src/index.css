@@ -129,6 +129,10 @@ html {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  /* Safe area for phones with notch/home bar */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
 }
 
 /* Reduced motion preference */
