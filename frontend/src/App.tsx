@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Course from './pages/Course';
 import Education from './pages/Education';
+import RealEstate from './pages/RealEstate';
+import HospitalMarketing from './pages/HospitalMarketing';
 import ThankYou from './pages/ThankYou';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
@@ -22,6 +24,8 @@ export default function App() {
           <Route path="/digital-marketing-agency-mumbai" element={<CityLanding city="Mumbai" />} />
           <Route path="/course" element={<Course />} />
           <Route path="/education" element={<Education />} />
+          <Route path="/real-estate" element={<RealEstate />} />
+          <Route path="/hospital-marketing" element={<HospitalMarketing />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
