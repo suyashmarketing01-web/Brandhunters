@@ -2,12 +2,14 @@ import { motion } from 'motion/react';
 import { Camera, Cpu, BookOpen, Presentation, Users, Target, BarChart3 } from 'lucide-react';
 
 interface WorkspacePhotosProps {
-  type?: 'agency' | 'academy' | 'education';
+  type?: 'agency' | 'academy' | 'education' | 'real-estate' | 'hospital';
 }
 
 export default function WorkspacePhotos({ type = 'agency' }: WorkspacePhotosProps) {
   const isAcademy = type === 'academy';
   const isEducation = type === 'education';
+  const isRealEstate = type === 'real-estate';
+  const isHospital = type === 'hospital';
 
   const headingProps = isAcademy ? {
     tag: 'Campus Tour',
@@ -19,6 +21,16 @@ export default function WorkspacePhotos({ type = 'agency' }: WorkspacePhotosProp
     title: 'Proven Admission Results',
     desc: 'We use data-driven strategies and beautiful campus branding to attract top-tier students year-round.',
     icon: Target
+  } : isRealEstate ? {
+    tag: 'Property Marketing Results',
+    title: 'How We Sell Properties Faster',
+    desc: 'From luxury apartments to commercial plots — our campaigns drive serious buyers to site visits and bookings.',
+    icon: BarChart3
+  } : isHospital ? {
+    tag: 'Healthcare Marketing Results',
+    title: 'How We Fill OPD & Hospital Beds',
+    desc: 'From Google search to WhatsApp appointment booking — our end-to-end patient acquisition system works 24/7.',
+    icon: Users
   } : {
     tag: 'Our Workspace',
     title: 'Where Results Are Engineered',
@@ -40,6 +52,20 @@ export default function WorkspacePhotos({ type = 'agency' }: WorkspacePhotosProp
     badgeIcon: Users,
     title: 'Top-Tier Student Recruitment',
     desc: 'Engaging, modern campus marketing that appeals to your target demographic.'
+  } : isRealEstate ? {
+    src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=800',
+    alt: 'Modern residential apartment property for sale Mumbai Pune',
+    badgeText: 'Property Leads',
+    badgeIcon: Target,
+    title: 'High-Intent Buyer Campaigns',
+    desc: 'Targeted Google & Meta ads reaching buyers actively searching for properties in your area.'
+  } : isHospital ? {
+    src: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&q=80&w=800',
+    alt: 'Hospital OPD reception patient appointment booking',
+    badgeText: 'Patient Acquisition',
+    badgeIcon: Users,
+    title: 'OPD Appointment Campaigns',
+    desc: 'Specialty-wise campaigns that drive patients to book appointments directly from Google & Instagram.'
   } : {
     src: '/images/agency/dashboard.png',
     alt: 'Brand Hunters Digital Marketing ROI dashboard and workstation',
@@ -63,6 +89,20 @@ export default function WorkspacePhotos({ type = 'agency' }: WorkspacePhotosProp
     badgeIcon: BarChart3,
     title: 'Data-Driven Admission Strategy',
     desc: 'Transparent reporting showing exact spikes in qualified leads and enrollments.'
+  } : isRealEstate ? {
+    src: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800',
+    alt: 'Real estate digital marketing analytics dashboard property ROI',
+    badgeText: 'ROI Tracking',
+    badgeIcon: BarChart3,
+    title: 'Cost-Per-Lead & Site Visit Reports',
+    desc: 'Full transparency on ad spend, leads, site visits and conversion rates every month.'
+  } : isHospital ? {
+    src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800',
+    alt: 'Doctor hospital digital marketing Google ads healthcare campaign',
+    badgeText: 'Healthcare Growth',
+    badgeIcon: BarChart3,
+    title: '70% Average Patient Growth',
+    desc: 'Hospitals see 50-70% increase in OPD volume within 60 days of campaign launch.'
   } : {
     src: '/images/agency/strategy.png',
     alt: 'Brand Hunters Strategy Brainstorming Session funnel whiteboard',

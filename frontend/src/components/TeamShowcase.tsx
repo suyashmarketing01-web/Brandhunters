@@ -2,12 +2,14 @@ import { motion } from 'motion/react';
 import { Users, Trophy, Briefcase, Award, TrendingUp, GraduationCap, Building2, Target, BarChart3, Heart } from 'lucide-react';
 
 interface TeamShowcaseProps {
-  type?: 'agency' | 'academy' | 'education';
+  type?: 'agency' | 'academy' | 'education' | 'real-estate' | 'hospital';
 }
 
 export default function TeamShowcase({ type = 'agency' }: TeamShowcaseProps) {
   const isAcademy = type === 'academy';
   const isEducation = type === 'education';
+  const isRealEstate = type === 'real-estate';
+  const isHospital = type === 'hospital';
 
   const content = isAcademy ? {
     tag: 'Our Student Community',
@@ -40,6 +42,38 @@ export default function TeamShowcase({ type = 'agency' }: TeamShowcaseProps) {
       { icon: TrendingUp, stat: '300%', label: 'Avg. Admission Growth', detail: 'Across all partnered institutions' },
       { icon: Building2, stat: '50+', label: 'Schools & Colleges', detail: 'Trust us with their marketing' },
       { icon: Heart, stat: '4.9/5', label: 'Client Satisfaction', detail: '120+ verified Google reviews' },
+    ]
+  } : isRealEstate ? {
+    tag: 'Our Property Marketing Team',
+    title: 'The Team That Sells Properties',
+    desc: 'A focused squad of real estate marketing specialists who know how to turn ad clicks into site visits and bookings.',
+    photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1200',
+    photoAlt: 'Brand Hunters Real Estate Marketing Team Pune Mumbai',
+    badgeText: 'Property Experts',
+    badgeIcon: Building2,
+    photoTitle: 'Real Estate Marketing Specialists',
+    photoDesc: 'From project launch to final booking — we manage the full buyer journey.',
+    statPill: '200+ Properties Sold',
+    achievements: [
+      { icon: TrendingUp, stat: '3x', label: 'Avg. ROI on Ad Spend', detail: 'Across residential & commercial projects' },
+      { icon: Building2, stat: '200+', label: 'Properties Sold', detail: 'Apartments, villas, plots & commercial' },
+      { icon: Heart, stat: '4.9/5', label: 'Builder Satisfaction', detail: '100+ verified Google reviews' },
+    ]
+  } : isHospital ? {
+    tag: 'Our Healthcare Marketing Team',
+    title: 'The Team Behind Patient Growth',
+    desc: 'NABH-aware healthcare marketing specialists who understand the sensitivity and compliance needs of hospital advertising.',
+    photo: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=1200',
+    photoAlt: 'Brand Hunters Hospital Healthcare Marketing Team India',
+    badgeText: 'Healthcare Experts',
+    badgeIcon: Users,
+    photoTitle: 'Hospital Marketing Specialists',
+    photoDesc: 'Specialists in OPD campaigns, doctor branding, and patient appointment funnels.',
+    statPill: '500+ Hospitals Served',
+    achievements: [
+      { icon: TrendingUp, stat: '70%', label: 'Avg. Patient Growth', detail: 'Within 60 days of campaign launch' },
+      { icon: Target, stat: '500+', label: 'Hospitals Served', detail: 'Across India’s major cities' },
+      { icon: Heart, stat: '4.9/5', label: 'Hospital Satisfaction', detail: '200+ verified Google reviews' },
     ]
   } : {
     tag: 'Our Team',

@@ -2,12 +2,14 @@ import { motion } from 'motion/react';
 import { Shield, Award, Users, Heart, Star, Target } from 'lucide-react';
 
 interface TrustBadgeProps {
-  type?: 'agency' | 'academy' | 'education';
+  type?: 'agency' | 'academy' | 'education' | 'real-estate' | 'hospital';
 }
 
 export default function TrustBadges({ type = 'agency' }: TrustBadgeProps) {
   const isAcademy = type === 'academy';
   const isEducation = type === 'education';
+  const isRealEstate = type === 'real-estate';
+  const isHospital = type === 'hospital';
 
   const getBadges = () => {
     if (isAcademy) {
@@ -23,6 +25,20 @@ export default function TrustBadges({ type = 'agency' }: TrustBadgeProps) {
         { icon: Award, title: '50+ Institutions', desc: 'Trusted by schools and universities', color: 'bg-red-50 text-red-600' },
         { icon: Users, title: '15k+ Leads Gen', desc: 'High-quality prospective students', color: 'bg-green-50 text-green-600' },
         { icon: Shield, title: 'Setup Fees: ₹0', desc: 'Pay after performance model', color: 'bg-amber-50 text-amber-600' },
+      ];
+    } else if (isRealEstate) {
+      return [
+        { icon: Target, title: '200+ Properties Sold', desc: 'Residential & commercial projects', color: 'bg-blue-50 text-blue-600' },
+        { icon: Award, title: 'Google Partner', desc: 'Certified Google Ads for real estate', color: 'bg-red-50 text-red-600' },
+        { icon: Users, title: '10k+ Buyer Leads', desc: 'High-intent property buyers generated', color: 'bg-green-50 text-green-600' },
+        { icon: Shield, title: 'Setup Fees: ₹0', desc: 'Pay after performance model', color: 'bg-amber-50 text-amber-600' },
+      ];
+    } else if (isHospital) {
+      return [
+        { icon: Target, title: '500+ Appointments', desc: 'Patient appointments in 60 days — guaranteed', color: 'bg-blue-50 text-blue-600' },
+        { icon: Award, title: 'Google Partner', desc: 'Google-verified healthcare marketing', color: 'bg-red-50 text-red-600' },
+        { icon: Users, title: '50+ Hospitals', desc: 'Hospitals & clinics trust us', color: 'bg-green-50 text-green-600' },
+        { icon: Shield, title: 'NABH Compliant', desc: 'Ethical & compliant healthcare ads', color: 'bg-amber-50 text-amber-600' },
       ];
     } else {
       return [
@@ -48,10 +64,10 @@ export default function TrustBadges({ type = 'agency' }: TrustBadgeProps) {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/10 text-brand-red text-sm font-bold mb-4">
             <Star className="w-4 h-4" />
-            {isAcademy ? 'Why Students Trust Us' : isEducation ? 'Why Institutions Trust Us' : 'Why Brands Trust Us'}
+            {isAcademy ? 'Why Students Trust Us' : isEducation ? 'Why Institutions Trust Us' : isRealEstate ? 'Why Builders & Agents Trust Us' : isHospital ? 'Why Hospitals Trust Us' : 'Why Brands Trust Us'}
           </div>
           <h2 className="text-3xl md:text-5xl font-display font-bold">
-            {isAcademy ? "Pune's Most Trusted Digital Academy" : isEducation ? "Pune's #1 Education Marketing Agency" : "Pune's #1 Trusted Marketing Agency"}
+            {isAcademy ? "Pune's Most Trusted Digital Academy" : isEducation ? "Pune's #1 Education Marketing Agency" : isRealEstate ? "Mumbai & Pune's #1 Real Estate Marketing Agency" : isHospital ? "India's Most Trusted Hospital Marketing Agency" : "Pune's #1 Trusted Marketing Agency"}
           </h2>
         </motion.div>
         

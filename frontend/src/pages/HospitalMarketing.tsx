@@ -237,9 +237,9 @@ export default function HospitalMarketing() {
         </div>
       </section>
 
-      <TrustBadges type="education" />
-      <WorkspacePhotos type="education" />
-      <TeamShowcase type="education" />
+      <TrustBadges type="hospital" />
+      <WorkspacePhotos type="hospital" />
+      <TeamShowcase type="hospital" />
 
       {/* Services Section */}
       <section id="services" className="py-12 sm:py-24 bg-brand-gray relative">

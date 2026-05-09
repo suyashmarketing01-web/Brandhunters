@@ -219,9 +219,9 @@ export default function RealEstate() {
         </div>
       </section>
 
-      <TrustBadges type="education" />
-      <WorkspacePhotos type="education" />
-      <TeamShowcase type="education" />
+      <TrustBadges type="real-estate" />
+      <WorkspacePhotos type="real-estate" />
+      <TeamShowcase type="real-estate" />
 
       {/* Services Section */}
       <section id="services" className="py-12 sm:py-24 bg-brand-gray relative">
