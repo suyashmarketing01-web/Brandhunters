@@ -19,44 +19,61 @@ interface ContactSubmission {
   createdAt: string;
 }
 
-// Data file path
+// ── Local JSON backup ──────────────────────────────────────────
 const DATA_DIR = path.join(__dirname, '../../data');
 const DATA_FILE = path.join(DATA_DIR, 'submissions.json');
 
-// Ensure data directory and file exist
 function ensureDataFile(): void {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
-  }
-  if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2));
-  }
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+  if (!fs.existsSync(DATA_FILE)) fs.writeFileSync(DATA_FILE, JSON.stringify([], null, 2));
 }
 
-// Read submissions
 function readSubmissions(): ContactSubmission[] {
   ensureDataFile();
-  const data = fs.readFileSync(DATA_FILE, 'utf-8');
-  return JSON.parse(data);
+  return JSON.parse(fs.readFileSync(DATA_FILE, 'utf-8'));
 }
 
-// Write submissions
 function writeSubmissions(submissions: ContactSubmission[]): void {
   ensureDataFile();
   fs.writeFileSync(DATA_FILE, JSON.stringify(submissions, null, 2));
 }
 
-// POST /api/contact — Submit a contact form
-contactRouter.post('/contact', (req: Request, res: Response) => {
+// ── Google Sheets (Apps Script Web App) ───────────────────────
+async function sendToGoogleSheets(submission: ContactSubmission): Promise<void> {
+  const sheetsUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+  if (!sheetsUrl) {
+    console.log('ℹ️  GOOGLE_SHEETS_WEBHOOK_URL not set — skipping Sheets sync');
+    return;
+  }
+
+  const payload = {
+    id: submission.id,
+    name: submission.name,
+    phone: submission.phone,
+    email: submission.email,
+    company: submission.company,
+    location: submission.location,
+    source: submission.source,
+    createdAt: new Date(submission.createdAt).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+  };
+
+  const response = await fetch(sheetsUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) throw new Error(`Sheets webhook failed: ${response.status}`);
+  console.log(`📊 Sent to Google Sheets: ${submission.name} (${submission.source})`);
+}
+
+// ── POST /api/contact ─────────────────────────────────────────
+contactRouter.post('/contact', async (req: Request, res: Response) => {
   try {
     const { name, phone, email, company, location, source } = req.body;
 
-    // Validation
     if (!name || !phone || !email || !location) {
-      res.status(400).json({ 
-        success: false, 
-        error: 'Missing required fields: name, phone, email, location' 
-      });
+      res.status(400).json({ success: false, error: 'Missing required fields: name, phone, email, location' });
       return;
     }
 
@@ -71,40 +88,38 @@ contactRouter.post('/contact', (req: Request, res: Response) => {
       createdAt: new Date().toISOString(),
     };
 
-    const submissions = readSubmissions();
-    submissions.push(submission);
-    writeSubmissions(submissions);
+    // 1. Local JSON backup (may fail on serverless — that's OK)
+    try {
+      const submissions = readSubmissions();
+      submissions.push(submission);
+      writeSubmissions(submissions);
+    } catch (fsErr) {
+      console.warn('⚠️  Local backup skipped (serverless env):', fsErr);
+    }
 
-    console.log(`✅ New submission from ${name} (${email}) — Source: ${source || 'agency'}`);
+    // 2. Google Sheets — primary storage
+    try {
+      await sendToGoogleSheets(submission);
+    } catch (sheetsErr) {
+      console.error('❌ Google Sheets sync failed:', sheetsErr);
+    }
 
-    res.status(201).json({ 
-      success: true, 
-      message: 'Form submitted successfully',
-      id: submission.id,
-    });
+    console.log(`✅ New lead: ${name} | ${phone} | Source: ${source || 'agency'}`);
+
+    res.status(201).json({ success: true, message: 'Form submitted successfully', id: submission.id });
   } catch (error) {
     console.error('❌ Error processing contact form:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Internal server error' 
-    });
+    res.status(500).json({ success: false, error: 'Internal server error' });
   }
 });
 
-// GET /api/contacts — List all submissions (for admin use)
+// ── GET /api/contacts (admin) ─────────────────────────────────
 contactRouter.get('/contacts', (_req: Request, res: Response) => {
   try {
     const submissions = readSubmissions();
-    res.json({ 
-      success: true, 
-      count: submissions.length,
-      data: submissions.reverse(), // Latest first
-    });
+    res.json({ success: true, count: submissions.length, data: submissions.reverse() });
   } catch (error) {
     console.error('❌ Error fetching contacts:', error);
-    res.status(500).json({ 
-      success: false, 
-      error: 'Internal server error' 
-    });
+    res.status(500).json({ success: false, error: 'Internal server error' });
   }
 });
