@@ -8,6 +8,8 @@ export default function ContactForm() {
   const navigate = useNavigate();
   const isAcademy = location.pathname === '/course';
   const isEducation = location.pathname === '/education';
+  const isRealEstate = location.pathname === '/real-estate';
+  const isHospital = location.pathname === '/hospital-marketing';
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
 
@@ -25,7 +27,7 @@ export default function ContactForm() {
         ? (form.elements.namedItem('graduation') as HTMLInputElement).value
         : (form.elements.namedItem('company') as HTMLInputElement).value,
       location: (form.elements.namedItem('location') as HTMLInputElement).value,
-      source: isAcademy ? 'academy' : isEducation ? 'education' : 'agency',
+      source: isAcademy ? 'academy' : isEducation ? 'education' : isRealEstate ? 'real-estate' : isHospital ? 'hospital' : 'agency',
     };
 
     try {
@@ -49,6 +51,8 @@ export default function ContactForm() {
   const getTitle = () => {
     if (isAcademy) return "Ready to start your journey?";
     if (isEducation) return "Ready to Scale Your Admissions?";
+    if (isRealEstate) return "Ready to Sell More Properties?";
+    if (isHospital) return "Ready to Fill Your OPD?";
     return (
       <>Let's Hit Your <br className="hidden md:block" /><span className="text-brand-red">Next Target.</span></>
     );
@@ -57,6 +61,8 @@ export default function ContactForm() {
   const getDescription = () => {
     if (isAcademy) return "Fill out the form below and our team will get back to you within 24 hours to discuss your learning path.";
     if (isEducation) return "Schedule a free strategy session with our education marketing experts. We'll audit your current presence and provide a roadmap for growth.";
+    if (isRealEstate) return "Book a free property marketing strategy session. We'll audit your current campaigns and show you exactly how to generate more buyer leads and site visits.";
+    if (isHospital) return "Book a free hospital marketing audit worth ₹25,000. Our healthcare marketing specialists will show you how to get 500+ patient appointments in 60 days.";
     return "Ready to stop paying for plans and start paying for results? Book your free strategy call today and let's discuss how we can scale your ROI.";
   };
 
@@ -122,7 +128,9 @@ export default function ContactForm() {
             className="bg-brand-black text-white p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl relative"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-brand-red/10 rounded-full -mr-16 -mt-16 blur-2xl" />
-            <h3 className="text-2xl font-display font-bold mb-8 relative z-10">{isAcademy ? "Apply Now" : "Get Your Free Proposal"}</h3>
+            <h3 className="text-2xl font-display font-bold mb-8 relative z-10">
+              {isAcademy ? "Apply Now" : isRealEstate ? "Get Free Property Marketing Plan" : isHospital ? "Book Free Hospital Audit" : "Get Your Free Proposal"}
+            </h3>
             <form className="space-y-6 relative z-10" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -173,14 +181,14 @@ export default function ContactForm() {
                 <div className="space-y-2">
                   <label htmlFor={isAcademy ? "graduation" : "company"} className="text-sm font-medium text-white/80 flex items-center gap-2">
                     {isAcademy ? <GraduationCap className="w-4 h-4" /> : <Building2 className="w-4 h-4" />} 
-                    {isAcademy ? "Graduation In" : "Company Name"}
+                    {isAcademy ? "Graduation In" : isRealEstate ? "Project / Builder Name" : isHospital ? "Hospital / Clinic Name" : "Company Name"}
                   </label>
                   <input
                     type="text"
                     id={isAcademy ? "graduation" : "company"}
                     name={isAcademy ? "graduation" : "company"}
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-transparent transition-all"
-                    placeholder={isAcademy ? "B.Tech, B.Com, etc." : "Acme Corp"}
+                    placeholder={isAcademy ? "B.Tech, B.Com, etc." : isRealEstate ? "e.g. Kolte Patil, XYZ Builders" : isHospital ? "e.g. City Hospital, ABC Clinic" : "Acme Corp"}
                     required
                   />
                 </div>
