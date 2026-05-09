@@ -25,7 +25,17 @@ const sectionsByPath: Record<string, { id: string, label: string }[]> = {
     { id: 'hero', label: 'Education' },
     { id: 'services', label: 'Services' },
     { id: 'contact', label: 'Contact' },
-  ]
+  ],
+  '/real-estate': [
+    { id: 'hero', label: 'Real Estate' },
+    { id: 'services', label: 'Services' },
+    { id: 'contact', label: 'Contact' },
+  ],
+  '/hospital-marketing': [
+    { id: 'hero', label: 'Hospital' },
+    { id: 'services', label: 'Services' },
+    { id: 'contact', label: 'Contact' },
+  ],
 };
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -70,7 +80,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   }, [location.pathname]);
 
   const currentSections = sectionsByPath[location.pathname] || [];
-  const contactLink = (location.pathname === '/' || location.pathname === '/course' || location.pathname === '/education') ? '#contact' : '/#contact';
+  const contactLink = ['/', '/course', '/education', '/real-estate', '/hospital-marketing'].includes(location.pathname) ? '#contact' : '/#contact';
 
   const getSupportBanner = () => {
     return (
@@ -113,6 +123,20 @@ export default function Layout({ children }: { children: ReactNode }) {
         </div>
       );
     }
+    if (location.pathname === '/real-estate') {
+      return (
+        <div className="bg-brand-red text-white text-[10px] font-bold tracking-[0.2em] uppercase py-2 text-center w-full z-[60] relative shadow-inner">
+          Brand Hunters Real Estate — Property Marketing Experts
+        </div>
+      );
+    }
+    if (location.pathname === '/hospital-marketing') {
+      return (
+        <div className="bg-brand-red text-white text-[10px] font-bold tracking-[0.2em] uppercase py-2 text-center w-full z-[60] relative shadow-inner">
+          Brand Hunters Healthcare — Hospital & Clinic Marketing
+        </div>
+      );
+    }
     return null;
   };
 
@@ -129,7 +153,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         }`}
         style={{ 
           top: isScrolled ? '0' : (
-            (location.pathname === '/education' || location.pathname === '/course') ? '76px' : '44px'
+            ['/education', '/course', '/real-estate', '/hospital-marketing'].includes(location.pathname) ? '76px' : '44px'
           )
         }}
       >
@@ -149,12 +173,32 @@ export default function Layout({ children }: { children: ReactNode }) {
             />
             {location.pathname === '/education' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden md:inline">| Education</span>}
             {location.pathname === '/course' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden md:inline">| Academy</span>}
+            {location.pathname === '/real-estate' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden md:inline">| Real Estate</span>}
+            {location.pathname === '/hospital-marketing' && <span className="text-brand-black/40 font-display font-normal text-sm sm:text-lg md:text-xl hidden md:inline">| Healthcare</span>}
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6">
             <Link to="/" className={`text-sm font-medium transition-colors ${location.pathname === '/' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Agency</Link>
-            <Link to="/education" className={`text-sm font-medium transition-colors ${location.pathname === '/education' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Education</Link>
+            {/* Industries Dropdown */}
+            <div className="relative group">
+              <button className={`text-sm font-medium transition-colors flex items-center gap-1 ${
+                ['/education','/real-estate','/hospital-marketing'].includes(location.pathname) ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'
+              }`}>
+                Industries <span className="text-[10px] mt-0.5">▼</span>
+              </button>
+              <div className="absolute top-full left-0 mt-2 w-52 bg-white border border-black/5 rounded-2xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <Link to="/education" className={`flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-brand-red/5 hover:text-brand-red transition-colors ${location.pathname === '/education' ? 'text-brand-red font-bold' : 'text-brand-black'}`}>
+                  🎓 Education
+                </Link>
+                <Link to="/real-estate" className={`flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-brand-red/5 hover:text-brand-red transition-colors ${location.pathname === '/real-estate' ? 'text-brand-red font-bold' : 'text-brand-black'}`}>
+                  🏠 Real Estate
+                </Link>
+                <Link to="/hospital-marketing" className={`flex items-center gap-2 px-4 py-2.5 text-sm hover:bg-brand-red/5 hover:text-brand-red transition-colors ${location.pathname === '/hospital-marketing' ? 'text-brand-red font-bold' : 'text-brand-black'}`}>
+                  🏥 Hospital Marketing
+                </Link>
+              </div>
+            </div>
             <Link to="/course" className={`text-sm font-medium transition-colors ${location.pathname === '/course' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Academy</Link>
             <a href={contactLink} className="text-sm font-medium transition-colors text-brand-black hover:text-brand-red">Contact</a>
             <Link
@@ -214,7 +258,10 @@ export default function Layout({ children }: { children: ReactNode }) {
               </>
             ) : null}
             <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium transition-colors ${location.pathname === '/' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Agency</Link>
-            <Link to="/education" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium transition-colors ${location.pathname === '/education' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Education</Link>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-brand-black/40 mt-2 mb-1">Industries</div>
+            <Link to="/education" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium transition-colors pl-3 ${location.pathname === '/education' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>🎓 Education</Link>
+            <Link to="/real-estate" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium transition-colors pl-3 ${location.pathname === '/real-estate' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>🏠 Real Estate</Link>
+            <Link to="/hospital-marketing" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium transition-colors pl-3 ${location.pathname === '/hospital-marketing' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>🏥 Hospital Marketing</Link>
             <Link to="/course" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium transition-colors ${location.pathname === '/course' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Academy</Link>
             <a href={contactLink} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-brand-black hover:text-brand-red transition-colors">Contact</a>
           </motion.div>
@@ -254,10 +301,10 @@ export default function Layout({ children }: { children: ReactNode }) {
               <h4 className="font-display font-semibold text-lg mb-6 text-white">Navigation</h4>
               <ul className="space-y-4">
                 <li><Link to="/" className="text-white/70 hover:text-brand-red transition-colors">Home</Link></li>
-                <li><Link to="/education" className="text-white/70 hover:text-brand-red transition-colors">Education</Link></li>
+                <li><Link to="/education" className="text-white/70 hover:text-brand-red transition-colors">🎓 Education</Link></li>
+                <li><Link to="/real-estate" className="text-white/70 hover:text-brand-red transition-colors">🏠 Real Estate</Link></li>
+                <li><Link to="/hospital-marketing" className="text-white/70 hover:text-brand-red transition-colors">🏥 Hospital Marketing</Link></li>
                 <li><Link to="/course" className="text-white/70 hover:text-brand-red transition-colors">Academy</Link></li>
-                <li><a href="#" className="text-white/70 hover:text-brand-red transition-colors">Services</a></li>
-                <li><a href="#" className="text-white/70 hover:text-brand-red transition-colors">Case Studies</a></li>
               </ul>
             </div>
 
