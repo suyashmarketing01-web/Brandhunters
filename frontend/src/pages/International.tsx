@@ -64,8 +64,13 @@ export default function International() {
           {/* Left */}
           <div className="flex-1 text-center lg:text-left">
             <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/20 border border-brand-red/30 text-brand-red text-sm font-bold mb-6">
-              <Globe className="w-4 h-4" /> Serving {flags.uk} UK & {flags.us} USA Businesses
+              className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-red/20 border border-brand-red/30 text-brand-red text-sm font-bold">
+                <Globe className="w-4 h-4" /> Serving {flags.uk} UK & {flags.us} USA Businesses
+              </span>
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 text-sm font-bold">
+                🇮🇳 India-Based · Globally Trusted
+              </span>
             </motion.div>
 
             <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
@@ -165,6 +170,74 @@ export default function International() {
               <p className="text-xs text-brand-black/50 uppercase tracking-wider font-medium">{s.label}</p>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* ── INDIA-BASED SECTION ── */}
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-[#0d0d0d] to-[#1a0a00] text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=60&w=1200")', backgroundSize: 'cover' }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d0d] via-[#0d0d0d]/90 to-[#0d0d0d]" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-500/30 text-orange-400 text-sm font-bold mb-6">
+                🇮🇳 Why India-Based = Your Advantage
+              </div>
+              <h2 className="text-3xl md:text-5xl font-display font-bold mb-6 leading-tight">
+                World-Class Talent.<br />
+                <span className="text-orange-400">A Fraction of the Price.</span>
+              </h2>
+              <p className="text-white/70 text-lg leading-relaxed mb-8">
+                Our team is based in <strong className="text-white">Pune, India</strong> — the same talent hub that powers digital marketing for global Fortune 500 brands. You get Google & Meta certified experts, English-fluent account managers, and full UK/US timezone support — at <strong className="text-orange-400">60–80% lower cost</strong> than a London or New York agency.
+              </p>
+              <div className="space-y-4">
+                {[
+                  { emoji: '🎓', title: 'Google & Meta Certified', desc: 'Every manager holds active certifications — same as any top London agency.' },
+                  { emoji: '🕐', title: 'GMT & EST Hours', desc: 'We work your hours. Morning standups, same-day responses, no excuses.' },
+                  { emoji: '🌍', title: 'Global Client Experience', desc: 'UK property, US e-commerce, Australian SaaS — we know international markets.' },
+                  { emoji: '💷', title: 'Transparent Pricing in £ & $', desc: 'All quotes, reports, and invoices in your currency. No confusion.' },
+                ].map((item, i) => (
+                  <motion.div key={i} initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                    className="flex items-start gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
+                    <span className="text-2xl shrink-0">{item.emoji}</span>
+                    <div>
+                      <h4 className="font-bold text-white">{item.title}</h4>
+                      <p className="text-white/50 text-sm">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right: big cost callout card */}
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+              className="p-[1px] rounded-3xl bg-gradient-to-br from-orange-500/60 via-orange-400/40 to-orange-500/20">
+              <div className="bg-[#120800] rounded-3xl p-8 sm:p-10 text-center">
+                <p className="text-orange-400/70 text-sm font-bold uppercase tracking-widest mb-4">Compare the cost</p>
+                <div className="space-y-6 text-left mb-8">
+                  {[
+                    { label: '🇬🇧 London Agency', price: '£2,000–£5,000/mo', faded: true },
+                    { label: '🇺🇸 New York Agency', price: '$3,000–$7,000/mo', faded: true },
+                    { label: '🇮🇳 Brand Hunters', price: 'From £500/$500/mo', faded: false },
+                  ].map((row, i) => (
+                    <div key={i} className={`flex justify-between items-center py-3 border-b border-white/10 ${!row.faded ? 'border-orange-500/30' : ''}`}>
+                      <span className={`text-sm font-medium ${row.faded ? 'text-white/40' : 'text-white font-bold'}`}>{row.label}</span>
+                      <span className={`text-sm font-bold ${row.faded ? 'text-white/30 line-through' : 'text-orange-400 text-lg'}`}>{row.price}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="p-5 rounded-2xl bg-orange-500/10 border border-orange-500/20 mb-6">
+                  <p className="text-4xl font-display font-black text-orange-400 mb-1">80% Savings</p>
+                  <p className="text-white/50 text-sm">vs. average UK/US agency fees</p>
+                </div>
+                <a href="#contact"
+                  className="block text-center w-full py-4 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 transition-colors shadow-[0_0_20px_rgba(249,115,22,0.3)]">
+                  Get My Free Month — No Risk
+                </a>
+                <p className="text-white/30 text-xs mt-3">🇮🇳 Based in Pune · Serving 🇬🇧 UK & 🇺🇸 USA</p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
