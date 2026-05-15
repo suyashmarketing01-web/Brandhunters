@@ -10,6 +10,7 @@ import ThankYou from './pages/ThankYou';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import CityLanding from './pages/CityLanding';
+import International from './pages/International';
 import SplashScreen from './components/SplashScreen';
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/digital-marketing-uk-us" element={<International />} />
         </Routes>
       </Layout>
     </Router>
