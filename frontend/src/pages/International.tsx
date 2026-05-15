@@ -15,7 +15,7 @@ const reviews = [
 const steps = [
   { icon: Play, num: '01', title: 'Free 30-Day Trial', desc: 'We run your ads at zero cost for one month. No contract, no credit card. Just results.' },
   { icon: BarChart3, num: '02', title: 'Review Results', desc: 'At day 30, you see real leads, real traffic, real data. Decide with full confidence.' },
-  { icon: DollarSign, num: '03', title: 'Start Low Budget', desc: 'Begin with as little as £500/$500/mo. Scale only when you\'re satisfied.' },
+  { icon: DollarSign, num: '03', title: 'Start Low Budget', desc: 'Begin with as little as £250/$250/mo. Scale only when you\'re satisfied.' },,
   { icon: Rocket, num: '04', title: 'Scale & Grow', desc: 'Our team optimises daily. Most clients 3x their budget within 90 days.' },
 ];
 
@@ -28,7 +28,7 @@ const services = [
 
 const faqs = [
   { q: 'Is the free trial really free?', a: 'Yes — completely. We set up and run your campaigns for 30 days at no charge. You only pay your ad spend to Google/Meta directly. We take nothing.' },
-  { q: 'What\'s the minimum budget after the trial?', a: 'As low as £500/$500 per month in management fees. Ad spend is separate and flexible — start with whatever you\'re comfortable with.' },
+  { q: 'What\'s the minimum budget after the trial?', a: 'As low as £250/$250 per month in management fees. Ad spend is separate and flexible — start with whatever you\'re comfortable with.' },
   { q: 'Do you work with small businesses?', a: 'Absolutely. Most of our UK/US clients start as small businesses. The free trial is designed specifically to remove the risk for smaller budgets.' },
   { q: 'How do you handle time zone differences?', a: 'Our team works across IST, GMT, and EST. You\'ll have a dedicated account manager reachable during your business hours.' },
   { q: 'What results can I expect in 30 days?', a: 'Most clients see qualified leads within the first 7–10 days. By day 30, we\'ll have full campaign data, audience insights, and a scaling plan.' },
@@ -81,7 +81,7 @@ export default function International() {
 
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg text-white/70 max-w-lg mb-8 leading-relaxed">
-              We run your Google Ads, Meta Ads & LinkedIn campaigns <strong className="text-white">completely free for 30 days</strong>. Then start with a budget as low as <strong className="text-brand-red">£500 / $500/mo</strong>. Zero risk. Total transparency.
+              We run your Google Ads, Meta Ads & LinkedIn campaigns <strong className="text-white">completely free for 30 days</strong>. Then start with a budget as low as <strong className="text-brand-red">£250 / $250/mo</strong>. Zero risk. Total transparency.
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }}
@@ -143,7 +143,7 @@ export default function International() {
                     <span className="text-4xl font-display font-black text-brand-red">FREE</span>
                     <span className="text-white/50 text-sm">for 30 days</span>
                   </div>
-                  <p className="text-xs text-white/30 mt-1">Then from £500/$500/mo — cancel anytime</p>
+                  <p className="text-xs text-white/30 mt-1">Then from £250/$250/mo — cancel anytime</p>
                 </div>
 
                 <a href="#contact"
@@ -218,7 +218,7 @@ export default function International() {
                   {[
                     { label: '🇬🇧 London Agency', price: '£2,000–£5,000/mo', faded: true },
                     { label: '🇺🇸 New York Agency', price: '$3,000–$7,000/mo', faded: true },
-                    { label: '🇮🇳 Brand Hunters', price: 'From £500/$500/mo', faded: false },
+                    { label: '🇮🇳 Brand Hunters', price: 'From £250/$250/mo', faded: false },
                   ].map((row, i) => (
                     <div key={i} className={`flex justify-between items-center py-3 border-b border-white/10 ${!row.faded ? 'border-orange-500/30' : ''}`}>
                       <span className={`text-sm font-medium ${row.faded ? 'text-white/40' : 'text-white font-bold'}`}>{row.label}</span>
@@ -341,7 +341,7 @@ export default function International() {
                 {[
                   { label: 'Average UK Agency', price: '£2,500/mo', pct: '100%', highlight: false },
                   { label: 'Average US Agency', price: '$3,000/mo', pct: '100%', highlight: false },
-                  { label: 'Brand Hunters', price: 'From £500/mo', pct: '25%', highlight: true },
+                  { label: 'Brand Hunters', price: 'From £250/mo', pct: '25%', highlight: true },
                 ].map((r, i) => (
                   <div key={i}>
                     <div className="flex justify-between text-sm mb-2">
