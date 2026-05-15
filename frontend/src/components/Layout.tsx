@@ -81,6 +81,7 @@ export default function Layout({ children }: { children: ReactNode }) {
 
   const currentSections = sectionsByPath[location.pathname] || [];
   const contactLink = ['/', '/course', '/education', '/real-estate', '/hospital-marketing'].includes(location.pathname) ? '#contact' : '/#contact';
+  const isIntlPage = location.pathname === '/digital-marketing-uk-us';
 
   const getSupportBanner = () => {
     return (
@@ -91,11 +92,21 @@ export default function Layout({ children }: { children: ReactNode }) {
               <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse" />
               <span className="text-white/90">24/7 Support Active</span>
             </div>
-            <div className="hidden sm:block w-px h-3 bg-white/20" />
-            <div className="flex items-center gap-2">
-              <Phone className="w-3 h-3 text-brand-red" />
-              <span className="text-white/70">Team: +91 7798484935</span>
-            </div>
+            {!isIntlPage && (
+              <>
+                <div className="hidden sm:block w-px h-3 bg-white/20" />
+                <div className="flex items-center gap-2">
+                  <Phone className="w-3 h-3 text-brand-red" />
+                  <span className="text-white/70">Team: +91 7798484935</span>
+                </div>
+              </>
+            )}
+            {isIntlPage && (
+              <>
+                <div className="hidden sm:block w-px h-3 bg-white/20" />
+                <span className="text-orange-400">🇮🇳 India-Based · Serving 🇬🇧 UK & 🇺🇸 USA</span>
+              </>
+            )}
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 text-[#25D366]">
@@ -315,20 +326,30 @@ export default function Layout({ children }: { children: ReactNode }) {
                   <Mail className="w-5 h-5 shrink-0 text-brand-red" />
                   <span>suyashmarketing365@gmail.com</span>
                 </li>
-                <li className="flex flex-col md:flex-row items-center gap-3 text-white/70">
-                  <Phone className="w-5 h-5 shrink-0 text-brand-red" />
-                  <div className="text-center md:text-left">
-                    <span>+91 7798484935</span>
-                    <p className="text-xs text-brand-red font-bold mt-1">24/7 Support Available</p>
-                  </div>
-                </li>
-                <li className="flex flex-col md:flex-row items-center md:items-start gap-3 text-white/70">
-                  <MapPin className="w-5 h-5 shrink-0 text-brand-red mt-1" />
-                  <span className="text-sm">
-                    1) Blue berry Bulding B301, Hadapsar, Pune<br />
-                    2) Behind new st stand plaus, Sangli
-                  </span>
-                </li>
+                {!isIntlPage && (
+                  <li className="flex flex-col md:flex-row items-center gap-3 text-white/70">
+                    <Phone className="w-5 h-5 shrink-0 text-brand-red" />
+                    <div className="text-center md:text-left">
+                      <span>+91 7798484935</span>
+                      <p className="text-xs text-brand-red font-bold mt-1">24/7 Support Available</p>
+                    </div>
+                  </li>
+                )}
+                {!isIntlPage && (
+                  <li className="flex flex-col md:flex-row items-center md:items-start gap-3 text-white/70">
+                    <MapPin className="w-5 h-5 shrink-0 text-brand-red mt-1" />
+                    <span className="text-sm">
+                      1) Blue berry Bulding B301, Hadapsar, Pune<br />
+                      2) Behind new st stand plaus, Sangli
+                    </span>
+                  </li>
+                )}
+                {isIntlPage && (
+                  <li className="flex flex-col md:flex-row items-center md:items-start gap-3 text-white/70">
+                    <MapPin className="w-5 h-5 shrink-0 text-brand-red mt-1" />
+                    <span className="text-sm">🇮🇳 Pune, India · Serving 🇬🇧 UK & 🇺🇸 USA</span>
+                  </li>
+                )}
               </ul>
             </div>
             <div>
@@ -377,17 +398,19 @@ export default function Layout({ children }: { children: ReactNode }) {
           <FaWhatsapp className="w-6 h-6" />
           <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">WhatsApp Now</span>
         </motion.a>
-        <motion.a
-          href="tel:+917798484935"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.1 }}
-          whileHover={{ scale: 1.05, x: -5 }}
-          className="bg-brand-black text-white px-5 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all border border-white/10"
-        >
-          <Phone className="w-5 h-5" />
-          <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">Call Now</span>
-        </motion.a>
+        {!isIntlPage && (
+          <motion.a
+            href="tel:+917798484935"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+            whileHover={{ scale: 1.05, x: -5 }}
+            className="bg-brand-black text-white px-5 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all border border-white/10"
+          >
+            <Phone className="w-5 h-5" />
+            <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">Call Now</span>
+          </motion.a>
+        )}
         <motion.a
           href="#contact"
           initial={{ opacity: 0, x: 50 }}
@@ -417,13 +440,15 @@ export default function Layout({ children }: { children: ReactNode }) {
             <FaWhatsapp className="w-5 h-5" />
             <span className="text-[9px] font-bold uppercase tracking-wide">WhatsApp</span>
           </a>
-          <a
-            href="tel:+917798484935"
-            className="flex flex-col items-center gap-0.5 text-white active:scale-95 transition-transform flex-1"
-          >
-            <Phone className="w-5 h-5" />
-            <span className="text-[9px] font-bold uppercase tracking-wide">Call Now</span>
-          </a>
+          {!isIntlPage && (
+            <a
+              href="tel:+917798484935"
+              className="flex flex-col items-center gap-0.5 text-white active:scale-95 transition-transform flex-1"
+            >
+              <Phone className="w-5 h-5" />
+              <span className="text-[9px] font-bold uppercase tracking-wide">Call Now</span>
+            </a>
+          )}
           <a
             href="#contact"
             className="flex items-center justify-center gap-1.5 bg-brand-red text-white px-4 py-2 rounded-full font-bold text-xs shadow-lg active:scale-95 transition-transform flex-1 max-w-[140px]"

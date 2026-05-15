@@ -8,6 +8,7 @@ export default function ContactForm() {
   const navigate = useNavigate();
   const isAcademy = location.pathname === '/course';
   const isEducation = location.pathname === '/education';
+  const isIntlPage = location.pathname === '/digital-marketing-uk-us';
   const isRealEstate = location.pathname === '/real-estate';
   const isHospital = location.pathname === '/hospital-marketing';
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -86,16 +87,19 @@ export default function ContactForm() {
             </p>
             
             <div className="space-y-6 md:space-y-8">
-              <div className="flex items-start md:items-center gap-4 md:gap-6 group">
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0 mt-1 md:mt-0">
-                  <Phone className="w-5 h-5 md:w-6 md:h-6" />
+              {/* Phone — hidden on UK/US page */}
+              {!isIntlPage && (
+                <div className="flex items-start md:items-center gap-4 md:gap-6 group">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0 mt-1 md:mt-0">
+                    <Phone className="w-5 h-5 md:w-6 md:h-6" />
+                  </div>
+                  <div>
+                    <p className="text-xs md:text-sm text-brand-black/50 font-bold uppercase tracking-widest">Call Us</p>
+                    <p className="text-base md:text-lg font-bold">+91 7798484935</p>
+                    <p className="text-[10px] md:text-xs text-brand-red font-bold mt-1">24/7 Support Available</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs md:text-sm text-brand-black/50 font-bold uppercase tracking-widest">Call Us</p>
-                  <p className="text-base md:text-lg font-bold">+91 7798484935</p>
-                  <p className="text-[10px] md:text-xs text-brand-red font-bold mt-1">24/7 Support Available</p>
-                </div>
-              </div>
+              )}
               <div className="flex items-start md:items-center gap-4 md:gap-6 group">
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0 mt-1 md:mt-0">
                   <Mail className="w-5 h-5 md:w-6 md:h-6" />
@@ -109,13 +113,23 @@ export default function ContactForm() {
                 <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-lg flex items-center justify-center text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0 mt-1 md:mt-0">
                   <MapPin className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
-                <div>
-                  <p className="text-xs md:text-sm text-brand-black/50 font-bold uppercase tracking-widest">Visit Us</p>
-                  <p className="text-xs md:text-sm font-medium text-brand-black/80">
-                    1) Blue berry Bulding B301, Hadapsar, Pune<br />
-                    2) Behind new st stand plaus, Sangli
-                  </p>
-                </div>
+                {!isIntlPage ? (
+                  <div>
+                    <p className="text-xs md:text-sm text-brand-black/50 font-bold uppercase tracking-widest">Visit Us</p>
+                    <p className="text-xs md:text-sm font-medium text-brand-black/80">
+                      1) Blue berry Bulding B301, Hadapsar, Pune<br />
+                      2) Behind new st stand plaus, Sangli
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    <p className="text-xs md:text-sm text-brand-black/50 font-bold uppercase tracking-widest">Based In</p>
+                    <p className="text-xs md:text-sm font-medium text-brand-black/80">
+                      🇮🇳 Pune, India &nbsp;&middot;&nbsp; Remote-First Agency<br />
+                      Serving 🇬🇧 UK &amp; 🇺🇸 USA clients globally
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
