@@ -2,6 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { contactRouter } from './routes/contact.js';
+import { authRouter } from './routes/auth.js';
+import { clientRouter } from './routes/clients.js';
+import { postRouter } from './routes/posts.js';
+import { suggestionRouter } from './routes/suggestions.js';
+import { uploadRouter } from './routes/upload.js';
 
 dotenv.config();
 
@@ -27,7 +32,7 @@ app.use(cors({
       callback(new Error(`CORS: origin ${origin} not allowed`));
     }
   },
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   credentials: true,
 }));
 app.use(express.json());
@@ -43,13 +48,20 @@ app.get('/api/health', (_req, res) => {
 
 // Routes
 app.use('/api', contactRouter);
+app.use('/api', authRouter);
+app.use('/api', clientRouter);
+app.use('/api', postRouter);
+app.use('/api', suggestionRouter);
+app.use('/api', uploadRouter);
 
 // Start server
 app.listen(PORT, () => {
   console.log(`\n🚀 Brand Hunters Backend Server`);
-  console.log(`   ➜ Local:   http://localhost:${PORT}`);
-  console.log(`   ➜ Health:  http://localhost:${PORT}/api/health`);
-  console.log(`   ➜ API:     http://localhost:${PORT}/api/contact\n`);
+  console.log(`   ➜ Local:      http://localhost:${PORT}`);
+  console.log(`   ➜ Health:     http://localhost:${PORT}/api/health`);
+  console.log(`   ➜ API:        http://localhost:${PORT}/api/contact`);
+  console.log(`   ➜ Admin Auth: http://localhost:${PORT}/api/auth/admin/login`);
+  console.log(`   ➜ Client Auth:http://localhost:${PORT}/api/auth/client/login\n`);
 });
 
 export default app;

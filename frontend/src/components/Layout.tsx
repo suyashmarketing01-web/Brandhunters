@@ -212,6 +212,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             </div>
             <Link to="/course" className={`text-sm font-medium transition-colors ${location.pathname === '/course' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Academy</Link>
             <a href={contactLink} className="text-sm font-medium transition-colors text-brand-black hover:text-brand-red">Contact</a>
+            <Link to="/portal/login" className={`text-sm font-medium transition-colors ${location.pathname.startsWith('/portal') ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Client Portal</Link>
             <Link
               to="/course"
               className="group relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 bg-brand-red border border-transparent rounded-full hover:bg-brand-red-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-red"
@@ -275,6 +276,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             <Link to="/hospital-marketing" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium transition-colors pl-3 ${location.pathname === '/hospital-marketing' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>🏥 Hospital Marketing</Link>
             <Link to="/course" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium transition-colors ${location.pathname === '/course' ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Academy</Link>
             <a href={contactLink} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-brand-black hover:text-brand-red transition-colors">Contact</a>
+            <Link to="/portal/login" onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-medium transition-colors ${location.pathname.startsWith('/portal') ? 'text-brand-red' : 'text-brand-black hover:text-brand-red'}`}>Client Portal</Link>
           </motion.div>
         )}
       </header>
@@ -395,7 +397,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           whileHover={{ scale: 1.05, x: -5 }}
           className="bg-[#25D366] text-white px-5 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2 group transition-all"
         >
-          <FaWhatsapp className="w-6 h-6" />
+          <FaWhatsapp size={24} />
           <span className="max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 whitespace-nowrap">WhatsApp Now</span>
         </motion.a>
         {!isIntlPage && (
@@ -437,7 +439,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             rel="noopener noreferrer"
             className="flex flex-col items-center gap-0.5 text-[#25D366] active:scale-95 transition-transform flex-1"
           >
-            <FaWhatsapp className="w-5 h-5" />
+            <FaWhatsapp size={20} />
             <span className="text-[9px] font-bold uppercase tracking-wide">WhatsApp</span>
           </a>
           {!isIntlPage && (

@@ -289,8 +289,8 @@ export default function International() {
                 {svc.tag && (
                   <div className="absolute top-4 right-4 px-3 py-1 bg-brand-red text-white text-xs font-bold rounded-full">{svc.tag}</div>
                 )}
-                <div className="w-14 h-14 rounded-2xl bg-brand-red/10 flex items-center justify-center mb-6 group-hover:bg-brand-red transition-colors">
-                  <svc.icon size={28} className="text-brand-red group-hover:text-white transition-colors" />
+                <div className="w-14 h-14 rounded-2xl bg-brand-red/10 flex items-center justify-center mb-6 group-hover:bg-brand-red transition-colors text-brand-red group-hover:text-white">
+                  <svc.icon size={28} />
                 </div>
                 <h3 className="text-xl font-display font-bold mb-3">{svc.title}</h3>
                 <p className="text-brand-black/60 text-sm leading-relaxed mb-4">{svc.desc}</p>
