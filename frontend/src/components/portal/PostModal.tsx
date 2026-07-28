@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  X, Download, ChevronLeft, ChevronRight,
-  Send, Check, XCircle, Calendar, MessageSquare,
+  ChevronLeft, ChevronRight, Download, Calendar,
+  Check, X, XCircle, Send, MessageSquare, Image, Video
 } from 'lucide-react';
 import StatusBadge from './StatusBadge';
 
@@ -101,7 +101,7 @@ export default function PostModal({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: 'rgba(0, 0, 0, 0.85)',
+            background: 'rgba(0, 0, 0, 0.4)',
             backdropFilter: 'blur(10px)',
             padding: '20px',
           }}
@@ -113,14 +113,14 @@ export default function PostModal({
             transition={{ type: 'spring', damping: 25 }}
             onClick={(e) => e.stopPropagation()}
             style={{
-              background: '#0f0f14',
-              borderRadius: '20px',
-              border: '1px solid rgba(255,255,255,0.1)',
+              background: '#ffffff',
+              borderRadius: '24px',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
               width: '100%',
               maxWidth: '900px',
               maxHeight: '90vh',
               overflow: 'auto',
-              boxShadow: '0 25px 80px rgba(0,0,0,0.5)',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.15)',
             }}
           >
             {/* Close button */}
@@ -134,62 +134,57 @@ export default function PostModal({
                 width: '36px',
                 height: '36px',
                 borderRadius: '50%',
-                border: '1px solid rgba(255,255,255,0.1)',
-                background: 'rgba(255,255,255,0.06)',
-                color: '#fff',
+                border: '1px solid rgba(0, 0, 0, 0.08)',
+                background: '#ffffff',
+                color: '#111',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
                 zIndex: 10,
               }}
             >
               <X size={18} />
             </button>
 
-            {/* Media viewer */}
+            {/* Media slider */}
             {attachments.length > 0 && (
               <div
                 style={{
                   position: 'relative',
                   width: '100%',
-                  background: '#000',
-                  borderRadius: '20px 20px 0 0',
-                  overflow: 'hidden',
+                  height: '420px',
+                  background: '#f8f9fa',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.06)',
                 }}
               >
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    minHeight: '400px',
-                    maxHeight: '500px',
-                  }}
-                >
-                  {attachments[currentMedia]?.file_type === 'image' ? (
-                    <img
-                      src={attachments[currentMedia]?.file_url}
-                      alt={attachments[currentMedia]?.file_name}
-                      style={{
-                        maxWidth: '100%',
-                        maxHeight: '500px',
-                        objectFit: 'contain',
-                      }}
-                    />
-                  ) : (
-                    <video
-                      src={attachments[currentMedia]?.file_url}
-                      controls
-                      style={{
-                        maxWidth: '100%',
-                        maxHeight: '500px',
-                      }}
-                    />
-                  )}
-                </div>
+                {attachments[currentMedia].file_type === 'image' ? (
+                  <img
+                    src={attachments[currentMedia].file_url}
+                    alt={attachments[currentMedia].file_name}
+                    style={{
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                      objectFit: 'contain',
+                    }}
+                  />
+                ) : (
+                  <video
+                    src={attachments[currentMedia].file_url}
+                    controls
+                    style={{
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                      objectFit: 'contain',
+                    }}
+                  />
+                )}
 
-                {/* Nav arrows */}
+                {/* Navigation arrows */}
                 {attachments.length > 1 && (
                   <>
                     <button
@@ -206,13 +201,14 @@ export default function PostModal({
                         width: '36px',
                         height: '36px',
                         borderRadius: '50%',
-                        border: 'none',
-                        background: 'rgba(0,0,0,0.6)',
-                        color: '#fff',
+                        border: '1px solid rgba(0, 0, 0, 0.06)',
+                        background: '#ffffff',
+                        color: '#111',
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                       }}
                     >
                       <ChevronLeft size={20} />
@@ -231,13 +227,14 @@ export default function PostModal({
                         width: '36px',
                         height: '36px',
                         borderRadius: '50%',
-                        border: 'none',
-                        background: 'rgba(0,0,0,0.6)',
-                        color: '#fff',
+                        border: '1px solid rgba(0, 0, 0, 0.06)',
+                        background: '#ffffff',
+                        color: '#111',
                         cursor: 'pointer',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                       }}
                     >
                       <ChevronRight size={20} />
@@ -266,7 +263,7 @@ export default function PostModal({
                             background:
                               i === currentMedia
                                 ? '#C20000'
-                                : 'rgba(255,255,255,0.4)',
+                                : 'rgba(0,0,0,0.2)',
                             cursor: 'pointer',
                             transition: 'all 0.3s ease',
                           }}
@@ -292,14 +289,14 @@ export default function PostModal({
                     alignItems: 'center',
                     gap: '6px',
                     padding: '8px 14px',
-                    background: 'rgba(0,0,0,0.6)',
-                    backdropFilter: 'blur(8px)',
-                    border: '1px solid rgba(255,255,255,0.15)',
+                    background: '#ffffff',
+                    border: '1px solid rgba(0, 0, 0, 0.08)',
                     borderRadius: '10px',
-                    color: '#fff',
+                    color: '#111',
                     fontSize: '12px',
                     fontWeight: 600,
                     cursor: 'pointer',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
                     transition: 'all 0.2s ease',
                   }}
                 >
@@ -324,7 +321,7 @@ export default function PostModal({
                   style={{
                     fontSize: '22px',
                     fontWeight: 800,
-                    color: '#fff',
+                    color: '#111',
                   }}
                 >
                   {post.title || 'Untitled Post'}
@@ -335,7 +332,7 @@ export default function PostModal({
               {post.description && (
                 <p
                   style={{
-                    color: 'rgba(255,255,255,0.6)',
+                    color: 'rgba(0,0,0,0.7)',
                     fontSize: '14px',
                     lineHeight: 1.7,
                     marginBottom: '16px',
@@ -350,7 +347,7 @@ export default function PostModal({
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
-                  color: 'rgba(255,255,255,0.4)',
+                  color: 'rgba(0,0,0,0.4)',
                   fontSize: '13px',
                   marginBottom: '24px',
                 }}
@@ -379,10 +376,10 @@ export default function PostModal({
                         alignItems: 'center',
                         gap: '6px',
                         padding: '8px 14px',
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.1)',
+                        background: 'rgba(0,0,0,0.03)',
+                        border: '1px solid rgba(0,0,0,0.06)',
                         borderRadius: '8px',
-                        color: 'rgba(255,255,255,0.7)',
+                        color: 'rgba(0,0,0,0.7)',
                         fontSize: '12px',
                         cursor: 'pointer',
                         transition: 'all 0.2s ease',
@@ -421,7 +418,7 @@ export default function PostModal({
                       fontWeight: 700,
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 20px rgba(16, 185, 129, 0.3)',
+                      boxShadow: '0 4px 20px rgba(16, 185, 129, 0.2)',
                     }}
                   >
                     <Check size={18} /> Accept Post
@@ -435,8 +432,8 @@ export default function PostModal({
                       justifyContent: 'center',
                       gap: '8px',
                       padding: '14px',
-                      background: 'rgba(239, 68, 68, 0.15)',
-                      border: '1px solid rgba(239, 68, 68, 0.3)',
+                      background: 'rgba(239, 68, 68, 0.08)',
+                      border: '1px solid rgba(239, 68, 68, 0.2)',
                       borderRadius: '12px',
                       color: '#EF4444',
                       fontSize: '15px',
@@ -454,7 +451,7 @@ export default function PostModal({
               {isClient && (
                 <div
                   style={{
-                    borderTop: '1px solid rgba(255,255,255,0.08)',
+                    borderTop: '1px solid rgba(0,0,0,0.06)',
                     paddingTop: '20px',
                   }}
                 >
@@ -465,7 +462,7 @@ export default function PostModal({
                       gap: '8px',
                       fontSize: '15px',
                       fontWeight: 700,
-                      color: '#fff',
+                      color: '#111',
                       marginBottom: '16px',
                     }}
                   >
@@ -489,14 +486,14 @@ export default function PostModal({
                           key={s.id}
                           style={{
                             padding: '12px 16px',
-                            background: 'rgba(255,255,255,0.03)',
+                            background: 'rgba(0,0,0,0.02)',
                             borderRadius: '10px',
-                            border: '1px solid rgba(255,255,255,0.06)',
+                            border: '1px solid rgba(0,0,0,0.05)',
                           }}
                         >
                           <p
                             style={{
-                              color: 'rgba(255,255,255,0.7)',
+                              color: 'rgba(0,0,0,0.7)',
                               fontSize: '13px',
                               lineHeight: 1.5,
                             }}
@@ -505,7 +502,7 @@ export default function PostModal({
                           </p>
                           <p
                             style={{
-                              color: 'rgba(255,255,255,0.3)',
+                              color: 'rgba(0,0,0,0.35)',
                               fontSize: '11px',
                               marginTop: '6px',
                             }}
@@ -529,10 +526,10 @@ export default function PostModal({
                       style={{
                         flex: 1,
                         padding: '12px 16px',
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.1)',
+                        background: 'rgba(0,0,0,0.02)',
+                        border: '1px solid rgba(0,0,0,0.08)',
                         borderRadius: '10px',
-                        color: '#fff',
+                        color: '#111',
                         fontSize: '13px',
                         outline: 'none',
                       }}
@@ -544,15 +541,15 @@ export default function PostModal({
                         padding: '12px 18px',
                         background: suggestion.trim()
                           ? 'linear-gradient(135deg, #C20000, #FF4444)'
-                          : 'rgba(255,255,255,0.05)',
+                          : 'rgba(0,0,0,0.03)',
                         border: 'none',
                         borderRadius: '10px',
-                        color: '#fff',
+                        color: suggestion.trim() ? '#fff' : 'rgba(0,0,0,0.3)',
                         cursor: suggestion.trim() ? 'pointer' : 'default',
                         display: 'flex',
                         alignItems: 'center',
                         transition: 'all 0.2s ease',
-                        opacity: suggestion.trim() ? 1 : 0.4,
+                        opacity: suggestion.trim() ? 1 : 0.5,
                       }}
                     >
                       <Send size={16} />

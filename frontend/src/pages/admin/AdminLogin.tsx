@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Lock, Mail, ArrowRight, Shield } from 'lucide-react';
+import { Lock, Mail, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 export default function AdminLogin() {
@@ -33,7 +33,7 @@ export default function AdminLogin() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#050508',
+        background: '#f8f9fa',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -45,7 +45,7 @@ export default function AdminLogin() {
           width: '500px',
           height: '500px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(194,0,0,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(194,0,0,0.05) 0%, transparent 70%)',
           top: '-150px',
           right: '-100px',
           pointerEvents: 'none',
@@ -57,7 +57,7 @@ export default function AdminLogin() {
           width: '400px',
           height: '400px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(194,0,0,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(194,0,0,0.03) 0%, transparent 70%)',
           bottom: '-100px',
           left: '-100px',
           pointerEvents: 'none',
@@ -89,7 +89,7 @@ export default function AdminLogin() {
               alignItems: 'center',
               justifyContent: 'center',
               margin: '0 auto 16px',
-              boxShadow: '0 8px 32px rgba(255, 255, 255, 0.1)',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
               padding: '10px',
               boxSizing: 'border-box'
             }}
@@ -108,26 +108,26 @@ export default function AdminLogin() {
             style={{
               fontSize: '24px',
               fontWeight: 800,
-              color: '#fff',
+              color: '#111',
               marginBottom: '6px',
               fontFamily: '"Space Grotesk", sans-serif',
             }}
           >
             Admin Panel
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px' }}>
-            Brand Hunters Management Portal
+          <p style={{ color: 'rgba(0,0,0,0.5)', fontSize: '14px' }}>
+            Manage clients, content, and approvals
           </p>
         </div>
 
         {/* Login Card */}
         <div
           style={{
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255,255,255,0.08)',
+            background: '#ffffff',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
             borderRadius: '20px',
             padding: '32px',
-            backdropFilter: 'blur(20px)',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
           }}
         >
           <form onSubmit={handleSubmit}>
@@ -138,13 +138,13 @@ export default function AdminLogin() {
                   display: 'block',
                   fontSize: '12px',
                   fontWeight: 600,
-                  color: 'rgba(255,255,255,0.5)',
+                  color: 'rgba(0,0,0,0.5)',
                   marginBottom: '8px',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
                 }}
               >
-                Email
+                Admin Email
               </label>
               <div
                 style={{
@@ -152,13 +152,13 @@ export default function AdminLogin() {
                   alignItems: 'center',
                   gap: '12px',
                   padding: '14px 16px',
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'rgba(0,0,0,0.02)',
+                  border: '1px solid rgba(0,0,0,0.08)',
                   borderRadius: '12px',
                   transition: 'all 0.3s ease',
                 }}
               >
-                <Mail size={18} style={{ color: 'rgba(255,255,255,0.3)' }} />
+                <Mail size={18} style={{ color: 'rgba(0,0,0,0.4)' }} />
                 <input
                   type="email"
                   value={email}
@@ -170,7 +170,7 @@ export default function AdminLogin() {
                     background: 'transparent',
                     border: 'none',
                     outline: 'none',
-                    color: '#fff',
+                    color: '#111',
                     fontSize: '14px',
                   }}
                 />
@@ -184,7 +184,7 @@ export default function AdminLogin() {
                   display: 'block',
                   fontSize: '12px',
                   fontWeight: 600,
-                  color: 'rgba(255,255,255,0.5)',
+                  color: 'rgba(0,0,0,0.5)',
                   marginBottom: '8px',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -198,32 +198,32 @@ export default function AdminLogin() {
                   alignItems: 'center',
                   gap: '12px',
                   padding: '14px 16px',
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'rgba(0,0,0,0.02)',
+                  border: '1px solid rgba(0,0,0,0.08)',
                   borderRadius: '12px',
                   transition: 'all 0.3s ease',
                 }}
               >
-                <Lock size={18} style={{ color: 'rgba(255,255,255,0.3)' }} />
+                <Lock size={18} style={{ color: 'rgba(0,0,0,0.4)' }} />
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter password"
+                  placeholder="••••••••"
                   required
                   style={{
                     flex: 1,
                     background: 'transparent',
                     border: 'none',
                     outline: 'none',
-                    color: '#fff',
+                    color: '#111',
                     fontSize: '14px',
                   }}
                 />
               </div>
             </div>
 
-            {/* Error */}
+            {/* Error Message */}
             {error && (
               <motion.p
                 initial={{ opacity: 0, y: -5 }}
@@ -234,16 +234,16 @@ export default function AdminLogin() {
                   textAlign: 'center',
                   marginBottom: '16px',
                   padding: '10px',
-                  background: 'rgba(239, 68, 68, 0.1)',
+                  background: 'rgba(239, 68, 68, 0.05)',
                   borderRadius: '8px',
-                  border: '1px solid rgba(239, 68, 68, 0.2)',
+                  border: '1px solid rgba(239, 68, 68, 0.15)',
                 }}
               >
                 {error}
               </motion.p>
             )}
 
-            {/* Submit */}
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={loading}
@@ -264,7 +264,7 @@ export default function AdminLogin() {
                 justifyContent: 'center',
                 gap: '8px',
                 transition: 'all 0.3s ease',
-                boxShadow: '0 4px 24px rgba(194, 0, 0, 0.3)',
+                boxShadow: '0 4px 20px rgba(194, 0, 0, 0.2)',
               }}
             >
               {loading ? (
@@ -280,7 +280,7 @@ export default function AdminLogin() {
                 />
               ) : (
                 <>
-                  Sign In <ArrowRight size={18} />
+                  Login to Admin <ArrowRight size={18} />
                 </>
               )}
             </button>

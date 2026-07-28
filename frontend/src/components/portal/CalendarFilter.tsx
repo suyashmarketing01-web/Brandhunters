@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface CalendarFilterProps {
@@ -14,45 +14,69 @@ export default function CalendarFilter({ selectedDate, onDateSelect, scheduledDa
   const year = currentMonth.getFullYear();
   const month = currentMonth.getMonth();
 
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const firstDayOfWeek = new Date(year, month, 1).getDay();
+  const getDaysInMonth = (y: number, m: number) => {
+    const date = new Date(y, m, 1);
+    const days = [];
+    const firstDayIndex = date.getDay();
 
-  const monthName = currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    // Pad empty spaces for days of previous month
+    for (let i = 0; i < firstDayIndex; i++) {
+      days.push(null);
+    }
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  const days: (number | null)[] = [];
-  for (let i = 0; i < firstDayOfWeek; i++) days.push(null);
-  for (let i = 1; i <= daysInMonth; i++) days.push(i);
-
-  const prevMonth = () => setCurrentMonth(new Date(year, month - 1, 1));
-  const nextMonth = () => setCurrentMonth(new Date(year, month + 1, 1));
-
-  const formatDate = (day: number) => {
-    const m = String(month + 1).padStart(2, '0');
-    const d = String(day).padStart(2, '0');
-    return `${year}-${m}-${d}`;
+    while (date.getMonth() === m) {
+      days.push(new Date(date));
+      date.setDate(date.getDate() + 1);
+    }
+    return days;
   };
 
-  const isToday = (day: number) => {
-    const date = new Date(year, month, day);
-    return date.getTime() === today.getTime();
+  const days = getDaysInMonth(year, month);
+
+  const nextMonth = () => {
+    setCurrentMonth(new Date(year, month + 1, 1));
   };
 
-  const isSelected = (day: number) => selectedDate === formatDate(day);
+  const prevMonth = () => {
+    setCurrentMonth(new Date(year, month - 1, 1));
+  };
+
+  const isToday = (date: Date) => {
+    const today = new Date();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  };
+
+  const isSelected = (date: Date) => {
+    if (!selectedDate) return false;
+    const sel = new Date(selectedDate);
+    return (
+      date.getDate() === sel.getDate() &&
+      date.getMonth() === sel.getMonth() &&
+      date.getFullYear() === sel.getFullYear()
+    );
+  };
+
+  const formatDate = (date: Date) => {
+    const offset = date.getTimezoneOffset();
+    const localDate = new Date(date.getTime() - offset * 60 * 1000);
+    return localDate.toISOString().split('T')[0];
+  };
 
   return (
     <div
       style={{
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,255,255,0.08)',
+        background: '#ffffff',
+        border: '1px solid rgba(0, 0, 0, 0.08)',
         borderRadius: '16px',
-        padding: '20px',
-        backdropFilter: 'blur(10px)',
+        padding: '16px',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.03)',
       }}
     >
-      {/* Header */}
+      {/* Month nav */}
       <div
         style={{
           display: 'flex',
@@ -64,10 +88,10 @@ export default function CalendarFilter({ selectedDate, onDateSelect, scheduledDa
         <button
           onClick={prevMonth}
           style={{
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'rgba(0, 0, 0, 0.03)',
+            border: '1px solid rgba(0, 0, 0, 0.06)',
             borderRadius: '8px',
-            color: '#fff',
+            color: '#111',
             cursor: 'pointer',
             padding: '6px',
             display: 'flex',
@@ -76,25 +100,23 @@ export default function CalendarFilter({ selectedDate, onDateSelect, scheduledDa
         >
           <ChevronLeft size={16} />
         </button>
-
-        <h3
+        <span
           style={{
-            color: '#fff',
-            fontSize: '15px',
+            fontSize: '14px',
             fontWeight: 700,
-            letterSpacing: '0.02em',
+            color: '#111',
+            fontFamily: '"Space Grotesk", sans-serif',
           }}
         >
-          {monthName}
-        </h3>
-
+          {currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}
+        </span>
         <button
           onClick={nextMonth}
           style={{
-            background: 'rgba(255,255,255,0.06)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'rgba(0, 0, 0, 0.03)',
+            border: '1px solid rgba(0, 0, 0, 0.06)',
             borderRadius: '8px',
-            color: '#fff',
+            color: '#111',
             cursor: 'pointer',
             padding: '6px',
             display: 'flex',
@@ -119,7 +141,7 @@ export default function CalendarFilter({ selectedDate, onDateSelect, scheduledDa
             key={d}
             style={{
               textAlign: 'center',
-              color: 'rgba(255,255,255,0.35)',
+              color: 'rgba(0, 0, 0, 0.4)',
               fontSize: '11px',
               fontWeight: 600,
               padding: '4px',
@@ -148,13 +170,12 @@ export default function CalendarFilter({ selectedDate, onDateSelect, scheduledDa
 
           const selected = isSelected(day);
           const todayDay = isToday(day);
-
-           const dateStr = formatDate(day);
+          const dateStr = formatDate(day);
           const hasPost = scheduledDates.includes(dateStr);
 
           return (
             <button
-              key={day}
+              key={day.toISOString()}
               onClick={() => {
                 if (selected) {
                   onDateSelect(null); // Deselect
@@ -169,16 +190,18 @@ export default function CalendarFilter({ selectedDate, onDateSelect, scheduledDa
                 border: selected
                   ? '2px solid #C20000'
                   : todayDay
-                  ? '2px solid rgba(255,255,255,0.2)'
+                  ? '2px solid rgba(194, 0, 0, 0.3)'
                   : '1px solid transparent',
                 background: selected
-                  ? 'rgba(194, 0, 0, 0.2)'
+                  ? 'linear-gradient(135deg, #C20000, #FF4444)'
+                  : todayDay
+                  ? 'rgba(194, 0, 0, 0.05)'
                   : 'transparent',
                 color: selected
                   ? '#fff'
                   : todayDay
                   ? '#C20000'
-                  : 'rgba(255,255,255,0.7)',
+                  : 'rgba(0, 0, 0, 0.7)',
                 fontSize: '13px',
                 fontWeight: selected || todayDay ? 700 : 400,
                 cursor: 'pointer',
@@ -190,16 +213,16 @@ export default function CalendarFilter({ selectedDate, onDateSelect, scheduledDa
               }}
               onMouseEnter={(e) => {
                 if (!selected) {
-                  (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.06)';
+                  (e.currentTarget as HTMLElement).style.background = 'rgba(0, 0, 0, 0.04)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!selected) {
-                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                  (e.currentTarget as HTMLElement).style.background = todayDay ? 'rgba(194, 0, 0, 0.05)' : 'transparent';
                 }
               }}
             >
-              <span>{day}</span>
+              <span>{day.getDate()}</span>
               {hasPost && (
                 <span
                   style={{
@@ -224,16 +247,24 @@ export default function CalendarFilter({ selectedDate, onDateSelect, scheduledDa
             width: '100%',
             marginTop: '12px',
             padding: '8px',
-            background: 'rgba(255,255,255,0.05)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: '8px',
-            color: 'rgba(255,255,255,0.5)',
+            background: 'rgba(0,0,0,0.03)',
+            border: '1px solid rgba(0,0,0,0.06)',
+            borderRadius: '10px',
+            color: '#C20000',
             fontSize: '12px',
+            fontWeight: 700,
             cursor: 'pointer',
+            textAlign: 'center',
             transition: 'all 0.2s ease',
           }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.background = 'rgba(0,0,0,0.06)';
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.background = 'rgba(0,0,0,0.03)';
+          }}
         >
-          Clear date filter
+          Clear Date Filter
         </button>
       )}
     </div>

@@ -63,7 +63,7 @@ export default function Dashboard() {
           style={{
             width: '40px',
             height: '40px',
-            border: '3px solid rgba(255,255,255,0.1)',
+            border: '3px solid rgba(0,0,0,0.1)',
             borderTopColor: '#C20000',
             borderRadius: '50%',
             animation: 'spin 0.8s linear infinite',
@@ -80,14 +80,14 @@ export default function Dashboard() {
           style={{
             fontSize: '28px',
             fontWeight: 800,
-            color: '#fff',
+            color: '#111',
             fontFamily: '"Space Grotesk", sans-serif',
             marginBottom: '8px',
           }}
         >
           Dashboard
         </h1>
-        <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px' }}>
+        <p style={{ color: 'rgba(0,0,0,0.5)', fontSize: '14px' }}>
           Overview of your content management platform
         </p>
       </div>
@@ -112,14 +112,15 @@ export default function Dashboard() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
               style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.06)',
+                background: '#ffffff',
+                border: '1px solid rgba(0,0,0,0.08)',
                 borderRadius: '16px',
                 padding: '24px',
                 position: 'relative',
                 overflow: 'hidden',
                 cursor: 'default',
                 transition: 'all 0.3s ease',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
               }}
               whileHover={{
                 y: -2,
@@ -165,7 +166,7 @@ export default function Dashboard() {
                 </div>
                 <ArrowUpRight
                   size={16}
-                  style={{ color: 'rgba(255,255,255,0.15)' }}
+                  style={{ color: 'rgba(0,0,0,0.2)' }}
                 />
               </div>
 
@@ -173,9 +174,10 @@ export default function Dashboard() {
                 style={{
                   fontSize: '32px',
                   fontWeight: 800,
-                  color: '#fff',
+                  color: '#111',
                   marginBottom: '4px',
                   fontFamily: '"Space Grotesk", sans-serif',
+                  margin: '0 0 4px 0',
                 }}
               >
                 {value}
@@ -183,8 +185,9 @@ export default function Dashboard() {
               <p
                 style={{
                   fontSize: '13px',
-                  color: 'rgba(255,255,255,0.4)',
+                  color: 'rgba(0,0,0,0.5)',
                   fontWeight: 500,
+                  margin: 0,
                 }}
               >
                 {card.label}

@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import { LogOut, FileImage } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 export default function ClientLayout() {
@@ -15,8 +15,8 @@ export default function ClientLayout() {
     <div
       style={{
         minHeight: '100vh',
-        background: '#050508',
-        color: '#fff',
+        background: '#f8f9fa',
+        color: '#111',
         display: 'flex',
         flexDirection: 'column',
       }}
@@ -28,8 +28,8 @@ export default function ClientLayout() {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '16px 24px',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
-          background: 'rgba(5, 5, 8, 0.8)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
+          background: 'rgba(255, 255, 255, 0.8)',
           backdropFilter: 'blur(10px)',
           position: 'sticky',
           top: 0,
@@ -47,7 +47,9 @@ export default function ClientLayout() {
               alignItems: 'center',
               justifyContent: 'center',
               padding: '6px',
-              boxSizing: 'border-box'
+              boxSizing: 'border-box',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.04)',
             }}
           >
             <img
@@ -64,7 +66,7 @@ export default function ClientLayout() {
             style={{
               fontSize: '16px',
               fontWeight: 800,
-              color: '#fff',
+              color: '#111',
               fontFamily: '"Space Grotesk", sans-serif',
               letterSpacing: '0.02em',
             }}
@@ -76,11 +78,11 @@ export default function ClientLayout() {
         {/* Client identity & Logout */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ textAlign: 'right', display: 'none' }} className="client-meta-desktop">
-            <p style={{ fontSize: '13px', fontWeight: 600, color: '#fff', margin: 0 }}>
+            <p style={{ fontSize: '13px', fontWeight: 600, color: '#111', margin: 0 }}>
               {clientInfo?.company_name}
             </p>
             {clientInfo?.contact_person && (
-              <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.4)', margin: 0 }}>
+              <p style={{ fontSize: '11px', color: 'rgba(0,0,0,0.4)', margin: 0 }}>
                 {clientInfo?.contact_person}
               </p>
             )}
@@ -94,21 +96,21 @@ export default function ClientLayout() {
               gap: '8px',
               padding: '10px 16px',
               borderRadius: '10px',
-              border: '1px solid rgba(255,255,255,0.08)',
-              background: 'rgba(255,255,255,0.03)',
-              color: 'rgba(255,255,255,0.7)',
+              border: '1px solid rgba(0,0,0,0.08)',
+              background: 'rgba(0,0,0,0.02)',
+              color: 'rgba(0,0,0,0.6)',
               fontSize: '13px',
               fontWeight: 600,
               cursor: 'pointer',
               transition: 'all 0.2s ease',
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.06)';
-              (e.currentTarget as HTMLElement).style.color = '#fff';
+              (e.currentTarget as HTMLElement).style.background = 'rgba(0,0,0,0.04)';
+              (e.currentTarget as HTMLElement).style.color = '#111';
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.03)';
-              (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)';
+              (e.currentTarget as HTMLElement).style.background = 'rgba(0,0,0,0.02)';
+              (e.currentTarget as HTMLElement).style.color = 'rgba(0,0,0,0.6)';
             }}
           >
             <LogOut size={16} />

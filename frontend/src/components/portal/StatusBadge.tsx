@@ -5,25 +5,22 @@ interface StatusBadgeProps {
 
 const statusStyles = {
   Pending: {
-    bg: 'rgba(245, 158, 11, 0.15)',
-    border: 'rgba(245, 158, 11, 0.4)',
-    text: '#F59E0B',
-    glow: '0 0 12px rgba(245, 158, 11, 0.25)',
-    dot: '#F59E0B',
+    bg: 'rgba(217, 119, 6, 0.08)',
+    border: 'rgba(217, 119, 6, 0.25)',
+    text: '#D97706',
+    dot: '#D97706',
   },
   Approved: {
-    bg: 'rgba(16, 185, 129, 0.15)',
-    border: 'rgba(16, 185, 129, 0.4)',
-    text: '#10B981',
-    glow: '0 0 12px rgba(16, 185, 129, 0.25)',
-    dot: '#10B981',
+    bg: 'rgba(5, 150, 105, 0.08)',
+    border: 'rgba(5, 150, 105, 0.25)',
+    text: '#059669',
+    dot: '#059669',
   },
   Declined: {
-    bg: 'rgba(239, 68, 68, 0.15)',
-    border: 'rgba(239, 68, 68, 0.4)',
-    text: '#EF4444',
-    glow: '0 0 12px rgba(239, 68, 68, 0.25)',
-    dot: '#EF4444',
+    bg: 'rgba(220, 38, 38, 0.08)',
+    border: 'rgba(220, 38, 38, 0.25)',
+    text: '#DC2626',
+    dot: '#DC2626',
   },
 };
 
@@ -45,13 +42,12 @@ export default function StatusBadge({ status, size = 'md' }: StatusBadgeProps) {
         gap: '6px',
         padding: sz.padding,
         fontSize: sz.fontSize,
-        fontWeight: 600,
-        letterSpacing: '0.02em',
+        fontWeight: 700,
+        letterSpacing: '0.04em',
         color: s.text,
         background: s.bg,
         border: `1px solid ${s.border}`,
         borderRadius: '9999px',
-        boxShadow: s.glow,
         textTransform: 'uppercase',
       }}
     >

@@ -1,27 +1,27 @@
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import {
-  LayoutDashboard, Users, FileImage, LogOut,
-  Menu, X, ChevronRight,
+  LayoutDashboard, Users, LogOut, Menu, X,
+  ChevronRight, ArrowLeft
 } from 'lucide-react';
-import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
-const navItems = [
-  { path: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
-  { path: '/admin/clients', label: 'Clients', icon: Users, end: false },
-];
-
 export default function AdminLayout() {
+  const { logoutAdmin, adminEmail } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { logoutAdmin, adminEmail } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logoutAdmin();
     navigate('/admin/login');
   };
+
+  const navItems = [
+    { path: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
+    { path: '/admin/clients', label: 'Clients', icon: Users, end: false },
+  ];
 
   const SidebarContent = () => (
     <div
@@ -53,7 +53,9 @@ export default function AdminLayout() {
             justifyContent: 'center',
             flexShrink: 0,
             padding: '6px',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+            border: '1px solid rgba(0,0,0,0.08)'
           }}
         >
           <img
@@ -73,7 +75,7 @@ export default function AdminLayout() {
             style={{
               fontSize: '16px',
               fontWeight: 800,
-              color: '#fff',
+              color: '#111',
               fontFamily: '"Space Grotesk", sans-serif',
               whiteSpace: 'nowrap',
             }}
@@ -98,12 +100,12 @@ export default function AdminLayout() {
               padding: '12px 14px',
               borderRadius: '12px',
               textDecoration: 'none',
-              color: isActive ? '#fff' : 'rgba(255,255,255,0.5)',
+              color: isActive ? '#C20000' : 'rgba(0,0,0,0.6)',
               background: isActive
-                ? 'rgba(194, 0, 0, 0.15)'
+                ? 'rgba(194, 0, 0, 0.08)'
                 : 'transparent',
               border: isActive
-                ? '1px solid rgba(194, 0, 0, 0.3)'
+                ? '1px solid rgba(194, 0, 0, 0.15)'
                 : '1px solid transparent',
               fontSize: '14px',
               fontWeight: isActive ? 600 : 400,
@@ -119,7 +121,7 @@ export default function AdminLayout() {
       {/* User / Logout */}
       <div
         style={{
-          borderTop: '1px solid rgba(255,255,255,0.06)',
+          borderTop: '1px solid rgba(0, 0, 0, 0.08)',
           paddingTop: '16px',
         }}
       >
@@ -127,12 +129,13 @@ export default function AdminLayout() {
           <p
             style={{
               fontSize: '11px',
-              color: 'rgba(255,255,255,0.3)',
+              color: 'rgba(0, 0, 0, 0.4)',
               padding: '0 14px',
               marginBottom: '8px',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
+              margin: '0 0 8px 0',
             }}
           >
             {adminEmail}
@@ -147,9 +150,9 @@ export default function AdminLayout() {
             gap: '12px',
             padding: '12px 14px',
             borderRadius: '12px',
-            border: '1px solid rgba(255,255,255,0.06)',
-            background: 'rgba(255,255,255,0.03)',
-            color: 'rgba(255,255,255,0.5)',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            background: 'rgba(0, 0, 0, 0.02)',
+            color: 'rgba(0, 0, 0, 0.6)',
             fontSize: '14px',
             cursor: 'pointer',
             transition: 'all 0.2s ease',
@@ -167,8 +170,8 @@ export default function AdminLayout() {
       style={{
         display: 'flex',
         minHeight: '100vh',
-        background: '#0A0A0F',
-        color: '#fff',
+        background: '#f8f9fa',
+        color: '#111',
       }}
     >
       {/* Desktop Sidebar */}
@@ -180,8 +183,8 @@ export default function AdminLayout() {
           left: 0,
           top: 0,
           height: '100vh',
-          background: 'rgba(255,255,255,0.02)',
-          borderRight: '1px solid rgba(255,255,255,0.06)',
+          background: '#ffffff',
+          borderRight: '1px solid rgba(0, 0, 0, 0.08)',
           zIndex: 50,
           overflow: 'hidden',
           display: 'none',
@@ -199,14 +202,15 @@ export default function AdminLayout() {
             width: '28px',
             height: '28px',
             borderRadius: '50%',
-            border: '1px solid rgba(255,255,255,0.1)',
-            background: '#0A0A0F',
-            color: 'rgba(255,255,255,0.5)',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            background: '#ffffff',
+            color: 'rgba(0, 0, 0, 0.5)',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             transition: 'all 0.2s ease',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.06)',
           }}
         >
           <ChevronRight
@@ -226,7 +230,7 @@ export default function AdminLayout() {
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(0,0,0,0.6)',
+            background: 'rgba(0,0,0,0.4)',
             zIndex: 90,
           }}
         />
@@ -243,8 +247,8 @@ export default function AdminLayout() {
           top: 0,
           height: '100vh',
           width: '260px',
-          background: '#0A0A0F',
-          borderRight: '1px solid rgba(255,255,255,0.08)',
+          background: '#ffffff',
+          borderRight: '1px solid rgba(0, 0, 0, 0.08)',
           zIndex: 100,
           display: 'block',
         }}
@@ -270,8 +274,8 @@ export default function AdminLayout() {
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '16px 24px',
-            borderBottom: '1px solid rgba(255,255,255,0.06)',
-            background: 'rgba(10, 10, 15, 0.8)',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
+            background: 'rgba(255, 255, 255, 0.8)',
             backdropFilter: 'blur(10px)',
             position: 'sticky',
             top: 0,
@@ -281,11 +285,11 @@ export default function AdminLayout() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             style={{
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.1)',
+              background: 'rgba(0, 0, 0, 0.03)',
+              border: '1px solid rgba(0, 0, 0, 0.06)',
               borderRadius: '10px',
               padding: '8px',
-              color: '#fff',
+              color: '#111',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',

@@ -51,27 +51,27 @@ export default function FileUpload({
         onDrop={handleDrop}
         onClick={() => inputRef.current?.click()}
         style={{
-          border: `2px dashed ${isDragging ? '#C20000' : 'rgba(255,255,255,0.15)'}`,
+          border: `2px dashed ${isDragging ? '#C20000' : 'rgba(0,0,0,0.15)'}`,
           borderRadius: '12px',
           padding: '32px',
           textAlign: 'center',
           cursor: 'pointer',
           background: isDragging
-            ? 'rgba(194, 0, 0, 0.08)'
-            : 'rgba(255,255,255,0.02)',
+            ? 'rgba(194, 0, 0, 0.04)'
+            : 'rgba(0,0,0,0.02)',
           transition: 'all 0.3s ease',
         }}
       >
         <Upload
           size={36}
           style={{
-            color: isDragging ? '#C20000' : 'rgba(255,255,255,0.3)',
+            color: isDragging ? '#C20000' : 'rgba(0,0,0,0.3)',
             margin: '0 auto 12px',
           }}
         />
         <p
           style={{
-            color: 'rgba(255,255,255,0.6)',
+            color: 'rgba(0,0,0,0.7)',
             fontSize: '14px',
             marginBottom: '4px',
           }}
@@ -83,7 +83,7 @@ export default function FileUpload({
         </p>
         <p
           style={{
-            color: 'rgba(255,255,255,0.3)',
+            color: 'rgba(0,0,0,0.4)',
             fontSize: '12px',
           }}
         >
@@ -117,8 +117,8 @@ export default function FileUpload({
                 position: 'relative',
                 borderRadius: '10px',
                 overflow: 'hidden',
-                border: '1px solid rgba(255,255,255,0.08)',
-                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(0,0,0,0.08)',
+                background: 'rgba(0,0,0,0.01)',
               }}
             >
               {/* Preview */}
@@ -145,7 +145,7 @@ export default function FileUpload({
                 ) : (
                   <FileVideo
                     size={32}
-                    style={{ color: 'rgba(255,255,255,0.3)' }}
+                    style={{ color: 'rgba(0,0,0,0.3)' }}
                   />
                 )}
               </div>
@@ -155,18 +155,19 @@ export default function FileUpload({
                 <p
                   style={{
                     fontSize: '10px',
-                    color: 'rgba(255,255,255,0.5)',
+                    color: 'rgba(0,0,0,0.6)',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
+                    margin: 0,
                   }}
                 >
                   {file.type.startsWith('image/') ? (
-                    <FileImage size={10} style={{ marginRight: 4 }} />
+                    <FileImage size={10} style={{ marginRight: 4, display: 'inline-block', verticalAlign: 'middle' }} />
                   ) : (
-                    <FileVideo size={10} style={{ marginRight: 4 }} />
+                    <FileVideo size={10} style={{ marginRight: 4, display: 'inline-block', verticalAlign: 'middle' }} />
                   )}
-                  {file.name}
+                  <span style={{ verticalAlign: 'middle' }}>{file.name}</span>
                 </p>
               </div>
 
@@ -184,7 +185,7 @@ export default function FileUpload({
                   height: '22px',
                   borderRadius: '50%',
                   border: 'none',
-                  background: 'rgba(0,0,0,0.7)',
+                  background: 'rgba(0,0,0,0.6)',
                   color: '#fff',
                   cursor: 'pointer',
                   display: 'flex',
