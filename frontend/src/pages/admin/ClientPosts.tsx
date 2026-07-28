@@ -111,42 +111,64 @@ export default function ClientPosts() {
     setCreating(true);
 
     try {
-      const formData = new FormData();
-      formData.append('client_id', clientId);
-      formData.append('title', form.title);
-      formData.append('description', form.description);
-      formData.append('scheduled_date', form.scheduled_date);
-      if (form.scheduled_time) {
-        formData.append('scheduled_time', form.scheduled_time);
-      }
-      formData.append('admin_notes', form.admin_notes);
-
-      uploadFiles.forEach((file) => {
-        formData.append('files', file);
-      });
-
+      // Step 1: Create the post with JSON body
       const res = await fetch('/api/posts', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${adminToken}` },
-        body: formData,
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          client_id: clientId,
+          title: form.title || null,
+          description: form.description || null,
+          scheduled_date: form.scheduled_date,
+          scheduled_time: form.scheduled_time || null,
+          admin_notes: form.admin_notes || null,
+        }),
       });
       const data = await res.json();
 
-      if (data.success) {
-        setForm({
-          title: '',
-          description: '',
-          scheduled_date: '',
-          scheduled_time: '',
-          admin_notes: '',
-        });
-        setUploadFiles([]);
-        setShowCreate(false);
-        fetchPosts();
-      } else {
-        alert(data.message || 'Failed to create post');
+      if (!data.success) {
+        alert(data.error || data.message || 'Failed to create post');
+        return;
       }
+
+      const newPostId = data.data.id;
+
+      // Step 2: Upload attachments (if any) to the upload endpoint
+      if (uploadFiles.length > 0) {
+        const formData = new FormData();
+        uploadFiles.forEach((file) => {
+          formData.append('files', file);
+        });
+
+        const uploadRes = await fetch(`/api/upload/${newPostId}`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${adminToken}` },
+          body: formData,
+        });
+        const uploadData = await uploadRes.json();
+
+        if (!uploadData.success) {
+          console.warn('Post created but file upload failed:', uploadData.error);
+          alert('Post created, but some attachments failed to upload.');
+        }
+      }
+
+      // Reset form
+      setForm({
+        title: '',
+        description: '',
+        scheduled_date: '',
+        scheduled_time: '',
+        admin_notes: '',
+      });
+      setUploadFiles([]);
+      setShowCreate(false);
+      fetchPosts();
     } catch (err) {
+      console.error('Error creating post:', err);
       alert('Error creating post');
     } finally {
       setCreating(false);
