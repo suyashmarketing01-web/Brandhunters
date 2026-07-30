@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FileText, Image, Video, Filter, CheckCircle, XCircle, Clock, TrendingUp } from 'lucide-react';
+import { FileText, Image, Video, Filter, CheckCircle, XCircle, Clock, TrendingUp, Calendar } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import CalendarFilter from '../../components/portal/CalendarFilter';
 import StatusBadge from '../../components/portal/StatusBadge';
@@ -391,132 +391,156 @@ export default function ClientDashboard() {
               <div style={{ width: '40px', height: '40px', border: '3px solid rgba(0,0,0,0.1)', borderTopColor: '#C20000', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
             </div>
           ) : filteredPosts.length > 0 ? (
-            <div style={{ overflowX: 'auto', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.08)', background: '#ffffff', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '700px' }}>
-                <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.08)', background: 'rgba(0,0,0,0.01)' }}>
-                    <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Scheduled Date</th>
-                    <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Post Name</th>
-                    <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Description / Caption</th>
-                    <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Media Preview</th>
-                    <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredPosts.map((post, idx) => {
-                    const thumbnail = post.attachments.find((a) => a.file_type === 'image');
-                    const hasVideo = post.attachments.some((a) => a.file_type === 'video');
+            <>
+              {/* ── Desktop Table (hidden on mobile) ── */}
+              <div className="desktop-table" style={{ overflowX: 'auto', borderRadius: '16px', border: '1px solid rgba(0,0,0,0.08)', background: '#ffffff', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '700px' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.08)', background: 'rgba(0,0,0,0.01)' }}>
+                      <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Scheduled Date</th>
+                      <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Post Name</th>
+                      <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Description / Caption</th>
+                      <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Media Preview</th>
+                      <th style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 700, color: 'rgba(0,0,0,0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredPosts.map((post, idx) => {
+                      const thumbnail = post.attachments.find((a) => a.file_type === 'image');
+                      const hasVideo = post.attachments.some((a) => a.file_type === 'video');
 
-                    return (
-                      <tr
-                        key={post.id}
-                        onClick={() => fetchPostDetail(post.id)}
-                        style={{
-                          borderBottom: '1px solid rgba(0,0,0,0.06)',
-                          cursor: 'pointer',
-                          transition: 'all 0.25s ease',
-                          animation: `rowSlideIn 0.4s ease ${idx * 50}ms both`,
-                        }}
-                        className="portal-table-row"
-                      >
-                        {/* Scheduled Date */}
-                        <td style={{ padding: '16px 20px', fontSize: '14px', color: '#111', fontWeight: 500 }}>
-                          {new Date(post.scheduled_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
-                          {post.scheduled_time && (
-                            <span style={{ display: 'block', fontSize: '11px', color: 'rgba(0,0,0,0.4)', marginTop: '4px' }}>
-                              {post.scheduled_time}
-                            </span>
-                          )}
-                        </td>
-
-                        {/* Post Name */}
-                        <td style={{ padding: '16px 20px', fontSize: '14px', color: '#111', fontWeight: 700 }}>
-                          {post.title || 'Untitled Post'}
-                        </td>
-
-                        {/* Description */}
-                        <td
+                      return (
+                        <tr
+                          key={post.id}
+                          onClick={() => fetchPostDetail(post.id)}
                           style={{
-                            padding: '16px 20px',
-                            fontSize: '13px',
-                            color: 'rgba(0,0,0,0.6)',
-                            maxWidth: '300px',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
+                            borderBottom: '1px solid rgba(0,0,0,0.06)',
+                            cursor: 'pointer',
+                            transition: 'all 0.25s ease',
+                            animation: `rowSlideIn 0.4s ease ${idx * 50}ms both`,
                           }}
+                          className="portal-table-row"
                         >
-                          {post.description || 'No caption provided'}
-                        </td>
+                          <td style={{ padding: '16px 20px', fontSize: '14px', color: '#111', fontWeight: 500 }}>
+                            {new Date(post.scheduled_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                            {post.scheduled_time && (
+                              <span style={{ display: 'block', fontSize: '11px', color: 'rgba(0,0,0,0.4)', marginTop: '4px' }}>
+                                {post.scheduled_time}
+                              </span>
+                            )}
+                          </td>
+                          <td style={{ padding: '16px 20px', fontSize: '14px', color: '#111', fontWeight: 700 }}>
+                            {post.title || 'Untitled Post'}
+                          </td>
+                          <td
+                            style={{
+                              padding: '16px 20px',
+                              fontSize: '13px',
+                              color: 'rgba(0,0,0,0.6)',
+                              maxWidth: '300px',
+                              whiteSpace: 'nowrap',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                            }}
+                          >
+                            {post.description || 'No caption provided'}
+                          </td>
+                          <td style={{ padding: '16px 20px' }}>
+                            {thumbnail ? (
+                              <img
+                                src={thumbnail.file_url}
+                                alt="preview"
+                                style={{
+                                  width: '40px',
+                                  height: '40px',
+                                  objectFit: 'cover',
+                                  borderRadius: '6px',
+                                  border: '1px solid rgba(0,0,0,0.08)',
+                                }}
+                              />
+                            ) : hasVideo ? (
+                              <div style={{ width: '40px', height: '40px', background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(0,0,0,0.4)' }}>
+                                <Video size={16} />
+                              </div>
+                            ) : (
+                              <div style={{ width: '40px', height: '40px', background: 'rgba(0,0,0,0.01)', border: '1px dashed rgba(0,0,0,0.1)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(0,0,0,0.3)' }}>
+                                <Image size={16} />
+                              </div>
+                            )}
+                          </td>
+                          <td style={{ padding: '16px 20px' }}>
+                            <StatusBadge status={post.status} size="sm" />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
 
-                        {/* Media Preview */}
-                        <td style={{ padding: '16px 20px' }}>
+              {/* ── Mobile Cards (hidden on desktop) ── */}
+              <div className="mobile-cards" style={{ display: 'none', flexDirection: 'column', gap: '12px' }}>
+                {filteredPosts.map((post) => {
+                  const thumbnail = post.attachments.find((a) => a.file_type === 'image');
+                  const hasVideo = post.attachments.some((a) => a.file_type === 'video');
+
+                  return (
+                    <div
+                      key={post.id}
+                      className="mobile-post-card"
+                      onClick={() => fetchPostDetail(post.id)}
+                    >
+                      <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                        {/* Thumbnail */}
+                        <div style={{ flexShrink: 0 }}>
                           {thumbnail ? (
                             <img
                               src={thumbnail.file_url}
                               alt="preview"
                               style={{
-                                width: '40px',
-                                height: '40px',
+                                width: '56px',
+                                height: '56px',
                                 objectFit: 'cover',
-                                borderRadius: '6px',
+                                borderRadius: '10px',
                                 border: '1px solid rgba(0,0,0,0.08)',
-                                transition: 'transform 0.2s ease',
-                              }}
-                              onMouseEnter={(e) => {
-                                (e.currentTarget as HTMLElement).style.transform = 'scale(1.15)';
-                              }}
-                              onMouseLeave={(e) => {
-                                (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
                               }}
                             />
                           ) : hasVideo ? (
-                            <div
-                              style={{
-                                width: '40px',
-                                height: '40px',
-                                background: 'rgba(0,0,0,0.03)',
-                                border: '1px solid rgba(0,0,0,0.08)',
-                                borderRadius: '6px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: 'rgba(0,0,0,0.4)',
-                              }}
-                            >
-                              <Video size={16} />
+                            <div style={{ width: '56px', height: '56px', background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(0,0,0,0.35)' }}>
+                              <Video size={22} />
                             </div>
                           ) : (
-                            <div
-                              style={{
-                                width: '40px',
-                                height: '40px',
-                                background: 'rgba(0,0,0,0.01)',
-                                border: '1px dashed rgba(0,0,0,0.1)',
-                                borderRadius: '6px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: 'rgba(0,0,0,0.3)',
-                              }}
-                            >
-                              <Image size={16} />
+                            <div style={{ width: '56px', height: '56px', background: 'rgba(0,0,0,0.02)', border: '1px dashed rgba(0,0,0,0.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(0,0,0,0.25)' }}>
+                              <Image size={22} />
                             </div>
                           )}
-                        </td>
+                        </div>
 
-                        {/* Status */}
-                        <td style={{ padding: '16px 20px' }}>
-                          <StatusBadge status={post.status} size="sm" />
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                        {/* Text content */}
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
+                            <h3 style={{ fontSize: '14px', fontWeight: 700, color: '#111', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              {post.title || 'Untitled Post'}
+                            </h3>
+                            <StatusBadge status={post.status} size="sm" />
+                          </div>
+                          <p style={{ fontSize: '12px', color: 'rgba(0,0,0,0.5)', margin: '0 0 6px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {post.description || 'No caption provided'}
+                          </p>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '11px', color: 'rgba(0,0,0,0.4)', fontWeight: 500 }}>
+                            <Calendar size={12} />
+                            {new Date(post.scheduled_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                            {post.scheduled_time && ` • ${post.scheduled_time}`}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
           ) : (
-            <div style={{ textAlign: 'center', padding: '80px 20px', background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
+            <div style={{ textAlign: 'center', padding: '60px 20px', background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '16px', boxShadow: '0 4px 12px rgba(0,0,0,0.02)' }}>
               <FileText size={48} style={{ color: 'rgba(0,0,0,0.1)', margin: '0 auto 16px' }} />
               <p style={{ color: 'rgba(0,0,0,0.5)', fontSize: '16px', fontWeight: 500 }}>
                 No scheduled posts found
@@ -560,11 +584,52 @@ export default function ClientDashboard() {
           from { opacity: 0; transform: translateX(-10px); }
           to { opacity: 1; transform: translateX(0); }
         }
+
+        /* ── Desktop: sidebar + main side by side ── */
         @media (min-width: 768px) {
           .portal-grid {
             grid-template-columns: 300px 1fr !important;
           }
         }
+
+        /* ── Tablet & below: stack everything vertically ── */
+        @media (max-width: 767px) {
+          .portal-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          .portal-sidebar {
+            order: 2;
+          }
+          .portal-sidebar > div {
+            position: static !important;
+          }
+          .portal-main {
+            order: 1;
+          }
+          .portal-main h1 {
+            font-size: 20px !important;
+          }
+          /* Hide table on mobile, show cards */
+          .desktop-table {
+            display: none !important;
+          }
+          .mobile-cards {
+            display: flex !important;
+          }
+        }
+
+        /* ── Desktop: show table, hide cards ── */
+        @media (min-width: 768px) {
+          .desktop-table {
+            display: block;
+          }
+          .mobile-cards {
+            display: none !important;
+          }
+        }
+
+        /* ── Small phones: widget 2x2 grid ── */
         @media (max-width: 640px) {
           .widget-grid {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -573,15 +638,35 @@ export default function ClientDashboard() {
           .widget-grid .status-widget {
             padding: 14px !important;
           }
-          .widget-grid .status-widget > div:last-child {
-            font-size: 11px !important;
+          .widget-grid .status-widget > div:first-child > div:first-child {
+            width: 34px !important;
+            height: 34px !important;
+          }
+          .widget-grid .status-widget > div:nth-child(2) {
+            font-size: 22px !important;
           }
         }
+
         .portal-table-row:hover {
           background-color: rgba(0, 0, 0, 0.02) !important;
         }
         .status-widget:active {
           transform: scale(0.97) !important;
+        }
+
+        /* Mobile post cards */
+        .mobile-post-card {
+          background: #ffffff;
+          border: 1px solid rgba(0,0,0,0.08);
+          border-radius: 14px;
+          padding: 16px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .mobile-post-card:active {
+          transform: scale(0.98);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
       `}</style>
     </div>

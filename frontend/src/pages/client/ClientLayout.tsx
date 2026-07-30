@@ -22,6 +22,8 @@ export default function ClientLayout() {
         color: '#111',
         display: 'flex',
         flexDirection: 'column',
+        overflowX: 'hidden',
+        width: '100%',
       }}
     >
       {/* ═══ Scrolling Marquee Banner ═══ */}
@@ -161,7 +163,7 @@ export default function ClientLayout() {
       </header>
 
       {/* Main layout context */}
-      <main style={{ flex: 1, padding: '24px', maxWidth: '1200px', width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
+      <main className="portal-main-wrapper" style={{ flex: 1, maxWidth: '1200px', width: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
         <Outlet />
       </main>
 
@@ -230,6 +232,14 @@ export default function ClientLayout() {
       </div>
 
       <style>{`
+        .portal-main-wrapper {
+          padding: 24px;
+        }
+        @media (max-width: 640px) {
+          .portal-main-wrapper {
+            padding: 16px;
+          }
+        }
         @media (min-width: 640px) {
           .client-meta-desktop {
             display: block !important;
